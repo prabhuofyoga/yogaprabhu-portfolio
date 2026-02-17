@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogaprabhu S. | Digital Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f172a; /* Deep Navy */
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .bg-circle {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(15,23,42,0) 70%);
+            animation: float 10s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* The Card */
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 350px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .title {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover { color: #3b82f6; }
+        
+        .contact-item i {
+            width: 30px;
+            color: #3b82f6;
+        }
+
+        .btn-full {
+            display: block;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-top: 25px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-full:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-circle"></div>
+
+    <div class="card">
+        <div class="avatar">Y</div>
+        <h1>Yogaprabhu S.</h1>
+        <div class="title">Commercial Credit Underwriter<br>& Agentic AI Specialist</div>
+        
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            prabhuofyoga@gmail.com
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            +91 98843 66634
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            linkedin.com/in/yogaprabhu
+        </div>
+
+        <div class="divider"></div>
+
+        <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 15px;">
+            View my portfolio & technical tools:
+        </div>
+        
+        <a href="https://prabhuofyoga.github.io/yogaprabhu-portfolio/" class="btn-full">
+            <i class="fas fa-external-link-alt"></i> Visit Portfolio Website
+        </a>
+    </div>
+
+</body>
+</html>
