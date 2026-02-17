@@ -3,308 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | Yogaprabhu S.</title>
+    <title>Yogaprabhu S. | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50; /* Dark Slate */
-            --accent: #2980b9; /* Professional Blue */
-            --light-bg: #f8f9fa;
-            --text-color: #333;
-            --border-color: #e0e0e0;
+            --primary: #0f172a; /* Deep Navy (Modern Tech feel) */
+            --accent: #3b82f6; /* Bright Blue */
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #fff;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
             padding: 0;
+            color: var(--text-main);
+            background-color: white;
+            line-height: 1.6;
         }
-        .page-wrapper {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            display: grid;
-            grid-template-columns: 300px 1fr;
-        }
-        .sidebar {
+
+        /* HERO SECTION */
+        header {
             background-color: var(--primary);
             color: white;
-            padding: 40px 30px;
+            padding: 80px 20px;
+            text-align: center;
         }
-        .profile-name {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            line-height: 1.2;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
-        .profile-role {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            color: #bdc3c7;
-        }
-        .contact-info div {
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            word-break: break-all;
-        }
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .contact-info a:hover {
-            color: var(--accent);
-        }
-        .contact-info i {
-            width: 25px;
-            color: var(--accent);
-        }
-        .sidebar-section {
-            margin-top: 40px;
-        }
-        .sidebar-title {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-        .skill-tag {
-            background: rgba(255,255,255,0.1);
-            padding: 5px 10px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            display: inline-block;
-            font-size: 0.9rem;
-        }
-        .main-content {
-            padding: 40px;
-            background-color: white;
-        }
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
+        .subtitle {
+            font-size: 1.25rem;
+            color: #94a3b8;
             margin-top: 0;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .experience-item, .education-item {
-            margin-bottom: 30px;
+        .hero-tags {
+            margin-top: 20px;
         }
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 5px;
-            flex-wrap: wrap;
-        }
-        .job-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-color);
-        }
-        .company-name {
-            font-weight: 600;
-            color: var(--accent);
-        }
-        .date-range {
-            font-style: italic;
-            color: #777;
+        .tag {
+            background: rgba(255,255,255,0.1);
+            color: #e2e8f0;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 0.9rem;
+            margin: 0 5px;
+            display: inline-block;
         }
-        .job-desc ul {
-            padding-left: 20px;
-            margin-top: 10px;
+
+        /* CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
         }
-        .job-desc li {
-            margin-bottom: 8px;
-        }
-        .badge-box {
-            border: 1px solid var(--accent);
-            background-color: #eaf6ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .project-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid var(--accent);
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .project-title {
-            font-weight: bold;
+
+        /* SECTION TITLES */
+        h2 {
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin-top: 8px;
+        }
+
+        /* PROJECTS GRID (The "Tools" Section) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        .card-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+        }
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* TIMELINE (Experience) */
+        .timeline-item {
+            border-left: 2px solid #e2e8f0;
+            padding-left: 25px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .role {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .company {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
             display: block;
         }
 
-        @media (max-width: 768px) {
-            .page-wrapper {
-                grid-template-columns: 1fr;
-                margin: 0;
-                box-shadow: none;
-            }
-            .sidebar {
-                padding: 30px 20px;
-            }
-            .main-content {
-                padding: 30px 20px;
-            }
+        /* FOOTER / CONTACT */
+        footer {
+            background-color: var(--bg-light);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
         }
-    </style>
-</head>
-<body>
-
-<div class="page-wrapper">
-    
-    <aside class="sidebar">
-        <div class="profile-name">Yogaprabhu S.</div>
-        <div class="profile-role">Banking Advisory Associate</div>
-        
-        <div class="contact-info">
-            <div><i class="fas fa-map-marker-alt"></i> Chennai, India</div>
-            <div><i class="fas fa-phone"></i> +91 98843 66634</div>
-            <div>
-                <i class="fas fa-envelope"></i> 
-                <a href="mailto:prabhuofyoga@gmail.com">prabhuofyoga@gmail.com</a>
-            </div>
-            <div>
-                <i class="fab fa-linkedin"></i> 
-                <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank">LinkedIn Profile</a>
-            </div>
-        </div>
-
-        <div class="sidebar-section">
-            <div class="sidebar-title">Technical Skills</div>
-            <span class="skill-tag">VBA & Macros</span>
-            <span class="skill-tag">Agentic AI</span>
-            <span class="skill-tag">Database Management</span>
-            <span class="skill-tag">Real Estate Data Mining</span>
-            <span class="skill-tag">Financial Modeling</span>
-        </div>
-
-        <div class="sidebar-section">
-            <div class="sidebar-title">Languages</div>
-            <div>English (Professional)</div>
-            <div>Tamil (Native)</div>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        
-        <p style="font-size: 1.1rem; color: #555; margin-bottom: 40px;">
-            Detail-oriented <strong>Banking Advisory Associate</strong> with a proven track record of accurate credit risk assessment for high-value portfolios. 
-            I distinguish myself by building <strong>custom automation tools</strong> that reduce manual errors and accelerate decision-making. 
-            Currently serving the offshore team of a top-tier US Bank, combining financial acumen with advanced technical problem-solving.
-        </p>
-
-        <h2 class="section-title">Technical Innovation & Tools</h2>
-        
-        <div class="project-box">
-            <span class="project-title">1. Automated Collateral Analysis Suite</span>
-            <p style="margin: 0; font-size: 0.95rem;">
-                Designed a comprehensive analysis worksheet with an integrated <strong>automated writeup fetcher</strong>. 
-                The tool instantly generates standardized collateral analysis writeups based on raw data inputs, significantly reducing drafting time for complex secured loans.
-            </p>
-        </div>
-
-        <div class="project-box">
-            <span class="project-title">2. Geo-Specific Real Estate Data Aggregator</span>
-            <p style="margin: 0; font-size: 0.95rem;">
-                Built a localized database engine to fetch real estate public record information. 
-                The system utilizes <strong>Zip Code or County/State</strong> inputs to rapidly verify property details, streamlining the due diligence process.
-            </p>
-        </div>
-
-        <div class="project-box">
-            <span class="project-title">3. The "Analyst Log" Macro</span>
-            <p style="margin: 0; font-size: 0.95rem;">
-                Developed a VBA macro to automate timestamped logging within the team's loan system, improving audit trails and reducing clerical errors.
-            </p>
-        </div>
-
-        <h2 class="section-title">Professional Experience</h2>
-
-        <div class="experience-item">
-            <div class="job-header">
-                <div class="job-title">Banking Advisory Associate</div>
-                <div class="date-range">March 2025 – Present</div>
-            </div>
-            <div class="company-name">Accenture (Offshore for Top US Bank)</div>
-            <div class="job-desc">
-                <p><em>Function: Commercial Credit Underwriter</em></p>
-                <ul>
-                    <li><strong>Credit Analysis:</strong> Lead underwriter for Commercial Credit (up to $5M) and Private Wealth secured lending (up to $25M). Responsible for renewals, annual reviews, and new loan proposals.</li>
-                    <li><strong>Stakeholder Management:</strong> Direct collaboration with Onshore Portfolio Managers. Drafted Credit Memos are utilized in final decision binders with minimal revision.</li>
-                    <li><strong>Quality Control:</strong> Consistently rated high for QC by onshore teams; recognized for "effectiveness and keen observation."</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="job-header">
-                <div class="job-title">Banking Advisory New Associate</div>
-                <div class="date-range">July 2022 – March 2025</div>
-            </div>
-            <div class="company-name">Accenture</div>
-            <div class="job-desc">
-                <ul>
-                    <li>Handled query resolution for the onshore team via the internal loan system.</li>
-                    <li>Learned and applied credit policies for US markets.</li>
-                    <li>Consistently maintained high QC ratings, leading to an early promotion to Associate.</li>
-                </ul>
-            </div>
-        </div>
-
-        <h2 class="section-title">Certifications</h2>
-        
-        <div class="badge-box">
-            <div style="display:flex; justify-content:space-between;">
-                <strong style="color: var(--primary);">Reinvention with Agentic AI | Accenture Badge</strong>
-                <span style="font-size:0.9rem; color:#666;">February 2026</span>
-            </div>
-            <span style="font-size: 0.9rem; color: #555;">
-                Completed advanced training on applying Agentic AI to real-world business challenges. Validated ability to drive reinvention and automation within financial workflows.
-            </span>
-        </div>
-
-        <h2 class="section-title">Education</h2>
-
-        <div class="education-item">
-            <div class="job-header">
-                <div class="job-title">Master of Commerce (M.Com)</div>
-                <div class="date-range">April 2025</div>
-            </div>
-            <div class="company-name">University of Madras</div>
-        </div>
-
-        <div class="education-item">
-            <div class="job-header">
-                <div class="job-title">Bachelor of Commerce (B.Com)</div>
-                <div class="date-range">June 2022</div>
-            </div>
-            <div class="company-name">University of Madras</div>
-        </div>
-
-        <div class="education-item">
-            <div class="job-header">
-                <div class="job-title">CMA (USA) - Candidate</div>
-                <div class="date-range">In Progress</div>
-            </div>
-            <div class="company-name">Institute of Management Accountants</div>
-            <div><em>Currently preparing for Part 1.</em></div>
-        </div>
-
-    </main>
-</div>
-
-</body>
-</html>
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 6
