@@ -3,205 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogaprabhu S. | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Yogaprabhu S. | FinTech Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* CSS VARIABLES for easy theming */
         :root {
-            --primary: #0f172a; /* Deep Navy */
-            --accent: #2563eb;  /* Bright Blue */
-            --text-main: #334155;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
+            --bg-body: #f8fafc;
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --accent-blue: #3b82f6; /* Bright tech blue */
+            --accent-dark: #1e40af;
+            --surface-dark: #020617; /* Deepest navy */
+            --card-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+            --hover-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
         }
         
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--text-main);
-            background-color: white;
-            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-body);
+            line-height: 1.7;
         }
 
-        /* HERO HEADER */
+        /* HEADER WITH GRADIENT */
         header {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--surface-dark) 0%, #1e3a8a 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 100px 20px 140px 20px; /* Extra padding bottom for overlap */
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Subtle background pattern purely with CSS */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+            pointer-events: none;
         }
         
         h1 {
-            font-size: 2.5rem;
-            margin: 0 0 10px 0;
-            font-weight: 700;
+            font-size: 3.5rem;
+            margin: 0 0 15px 0;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
         
         .subtitle {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin: 0 auto;
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin: 0 auto 30px auto;
             max-width: 700px;
-            font-weight: 300;
+            font-weight: 400;
         }
 
-        .hero-tags {
-            margin-top: 20px;
-        }
-        
         .tag {
-            background: rgba(255,255,255,0.15);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin: 0 5px;
+            background: rgba(255,255,255,0.1);
+            color: #bfdbfe;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 6px;
             display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* CONTAINER */
+        /* MAIN CONTAINER */
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 0 20px 80px 20px;
+        }
+
+        /* FLOATING SUMMARY BOX (Overlaps Header) */
+        .overlap-box {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            margin-top: -80px; /* Creates the overlap effect */
+            position: relative;
+            z-index: 10;
+            border-top: 4px solid var(--accent-blue);
         }
 
         /* SECTION TITLES */
         h2 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            border-bottom: 3px solid var(--accent);
-            display: inline-block;
+            font-size: 1.75rem;
+            color: var(--surface-dark);
+            font-weight: 800;
+            margin-top: 80px;
             margin-bottom: 40px;
-            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 30px;
+            background: var(--accent-blue);
+            margin-right: 15px;
+            border-radius: 4px;
         }
 
-        /* SUMMARY BOX */
-        .summary-box {
-            background-color: var(--bg-light);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 60px;
-            border-left: 5px solid var(--accent);
-        }
-
-        /* PROJECTS GRID */
+        /* MODERN CARD GRID */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         
         .card {
             background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            height: 100%;
+            box-sizing: border-box;
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
+            transform: translateY(-7px);
+            box-shadow: var(--hover-shadow);
+            border-color: #bfdbfe;
+        }
+        
+        /* Styled Icon Boxes */
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            color: var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
         }
         
         .card h3 {
-            margin-top: 0;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-        
-        .card-icon {
-            color: var(--accent);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            margin: 0 0 15px 0;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
-        /* EXPERIENCE TIMELINE */
-        .job-item {
-            border-left: 3px solid #e2e8f0;
-            padding-left: 25px;
-            margin-bottom: 50px;
+        /* MODERN TIMELINE */
+        .timeline {
             position: relative;
+            padding-left: 40px;
         }
         
-        .job-item::before {
+        .timeline::before {
             content: '';
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
             position: absolute;
-            left: -7.5px;
-            top: 5px;
+            left: 0;
+            top: 10px;
+            bottom: 0;
+            width: 3px;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+        
+        .job-card {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        /* Timeline Dot */
+        .job-card::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 4px solid var(--accent-blue);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+        
+        .job-header {
+            margin-bottom: 15px;
         }
         
         .job-role {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--text-dark);
         }
         
         .job-company {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
+            color: var(--accent-blue);
+            font-weight: 600;
             display: block;
-            font-weight: 500;
+            margin-top: 5px;
         }
 
-        .job-desc ul {
+        .job-card ul {
             padding-left: 20px;
-            margin: 0;
+            color: var(--text-light);
         }
-        
-        .job-desc li {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
+        .job-card li {
+            margin-bottom: 10px;
         }
 
         /* FOOTER */
         footer {
-            background-color: var(--bg-light);
+            background: var(--surface-dark);
+            color: white;
             text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid #e2e8f0;
+            padding: 80px 20px;
+            position: relative;
         }
         
         .btn {
-            display: inline-block;
-            background-color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent-blue);
             color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 14px 30px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             margin: 10px;
-            transition: background 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
         
         .btn:hover {
-            background-color: var(--accent);
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
         }
+        
+        .btn i { margin-right: 10px; }
 
         .btn-outline {
-            background-color: white;
-            color: var(--primary);
-            border: 1px solid #cbd5e1;
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: none;
         }
         
         .btn-outline:hover {
-            background-color: white;
-            border-color: var(--primary);
+            background: white;
+            color: var(--surface-dark);
+            border-color: white;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 40px 20px; }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            header { padding-bottom: 100px; }
+            .overlap-box { margin-top: -60px; padding: 25px; }
+            .timeline { padding-left: 30px; }
+            .job-card::before { left: -37px; }
         }
     </style>
 </head>
@@ -211,7 +282,7 @@
         <h1>Yogaprabhu S.</h1>
         <p class="subtitle">Commercial Credit Underwriter | Financial Analyst | Process Improvement Specialist</p>
         <div class="hero-tags">
-            <span class="tag">Credit Risk</span>
+            <span class="tag">Credit Risk Analysis</span>
             <span class="tag">Agentic AI</span>
             <span class="tag">VBA Automation</span>
         </div>
@@ -219,58 +290,60 @@
 
     <div class="container">
         
-        <div class="summary-box">
-            <h3 style="margin-top: 0; color: var(--primary);">About Me</h3>
-            <p style="margin-bottom: 0;">
+        <div class="overlap-box">
+            <h3 style="margin-top: 0; font-size: 1.4rem; color: var(--text-dark);">Executive Profile</h3>
+            <p style="margin-bottom: 0; font-size: 1.05rem; color: var(--text-light);">
                 Results-oriented Commercial Credit Underwriter with nearly 4 years of experience at Accenture supporting a Top-Tier U.S. Bank. 
-                I possess a unique hybrid skill set combining deep financial acumen with technical proficiency in <strong>Agentic AI & VBA Automation</strong>. 
-                Proven ability to apply advanced technology to solve real-world credit challenges, reducing manual errors and improving team efficiency.
+                I distinguish myself with a hybrid skill set combining deep financial acumen with technical proficiency in <strong>Agentic AI & VBA Automation</strong>. 
+                I apply advanced technology to solve real-world credit challenges, significantly reducing errors and improving team efficiency.
             </p>
         </div>
 
-        <h2>Technical Initiatives</h2>
+        <h2>Technical Initiatives & Tools</h2>
         <div class="grid">
             <div class="card">
-                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <div class="icon-box"><i class="fas fa-brain"></i></div>
                 <h3>Agentic AI Implementation</h3>
-                <p>Applying concepts from "Reinvention with Agentic AI" to explore autonomous workflows for preliminary credit data gathering and risk assessment.</p>
+                <p>Applying concepts from "Reinvention with Agentic AI" training to explore autonomous workflows for preliminary credit data gathering and risk assessment.</p>
             </div>
             
             <div class="card">
-                <div class="card-icon"><i class="fas fa-file-excel"></i></div>
+                <div class="icon-box"><i class="fas fa-file-code"></i></div>
                 <h3>Automated "Analyst Log"</h3>
-                <p>Developed a VBA macro to timestamp and standardize analysis write-ups. Reduced documentation errors by ~15% and was adopted as a best practice.</p>
+                <p>Developed a VBA-based tool to timestamp and standardize credit comments and audit trails. Reduced documentation errors by ~15% and was adopted as a best practice.</p>
             </div>
             
             <div class="card">
-                <div class="card-icon"><i class="fas fa-search-location"></i></div>
+                <div class="icon-box"><i class="fas fa-map-location-dot"></i></div>
                 <h3>Tax Bill Verification Script</h3>
                 <p>Created an automated workflow to cross-reference US County real estate tax data (e.g., NETROnline), reducing manual lookup time by hours per week.</p>
             </div>
         </div>
 
-        <h2>Experience</h2>
-        
-        <div class="job-item">
-            <div class="job-role">Associate – Commercial Credit Underwriting</div>
-            <span class="job-company">Accenture (Service Provider for Top U.S. Bank) | March 2025 – Present</span>
-            <div class="job-desc">
+        <h2>Professional Experience</h2>
+        <div class="timeline">
+            
+            <div class="card job-card">
+                <div class="job-header">
+                    <div class="job-role">Associate – Commercial Credit Underwriting</div>
+                    <span class="job-company">Accenture (Service Provider for Top U.S. Bank) | March 2025 – Present</span>
+                </div>
                 <ul>
-                    <li><strong>Credit Underwriting:</strong> Spearheading New Loan Proposals and Renewals for a diverse portfolio (C&I and CRE).</li>
-                    <li><strong>Onshore Collaboration:</strong> Serving as primary contact for Onshore Portfolio Managers, resolving complex queries on borrower financials and risk triggers.</li>
-                    <li><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating with zero-defect credit memos.</li>
+                    <li><strong>Complex Credit Actions:</strong> Spearheading underwriting for complex New Loan Proposals and Renewals for a diverse commercial portfolio (C&I and CRE).</li>
+                    <li><strong>Onshore Collaboration:</strong> Serving as primary point of contact for Onshore Portfolio Managers, resolving complex queries regarding borrower financials via the loan system.</li>
+                    <li><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating, recognized for delivering zero-defect credit memos requiring minimal revision.</li>
                 </ul>
             </div>
-        </div>
 
-        <div class="job-item">
-            <div class="job-role">New Associate – Commercial Credit Underwriting</div>
-            <span class="job-company">Accenture | July 2022 – March 2025</span>
-            <div class="job-desc">
+            <div class="card job-card">
+                <div class="job-header">
+                    <div class="job-role">New Associate – Commercial Credit Underwriting</div>
+                    <span class="job-company">Accenture | July 2022 – March 2025</span>
+                </div>
                 <ul>
-                    <li><strong>Financial Spreading:</strong> Detailed analysis of Balance Sheet, P&L, and Cash Flow to evaluate borrower health.</li>
-                    <li><strong>Portfolio Monitoring:</strong> Conducted Annual Reviews and interim monitoring within strict SLAs.</li>
-                    <li><strong>Tech-Driven Efficiency:</strong> Independently built offline macros to verify real estate tax bill statuses.</li>
+                    <li><strong>Financial Spreading:</strong> Performed detailed spreading of company financial statements (Balance Sheet, P&L, Cash Flow) to evaluate borrower health.</li>
+                    <li><strong>Portfolio Monitoring:</strong> Conducted routine Annual Reviews and interim monitoring, ensuring risk ratings were updated accurately within SLAs.</li>
+                    <li><strong>Recognition:</strong> Received appreciation from Onshore Portfolio Manager for "keen observations" that identified credit risks early.</li>
                 </ul>
             </div>
         </div>
@@ -278,39 +351,45 @@
         <h2>Education & Certifications</h2>
         <div class="grid">
             <div class="card">
-                <strong>Reinvention with Agentic AI</strong><br>
-                <span style="font-size: 0.9rem; color: #64748b;">Accenture Badge | Feb 2026</span>
-                <p style="font-size: 0.85rem; margin-top: 10px;">Earned badge for demonstrating practical expertise in applying agentic AI to business challenges.</p>
+                <div class="icon-box" style="background: #e0e7ff; color: #4338ca;"><i class="fas fa-award"></i></div>
+                <h3>Reinvention with Agentic AI</h3>
+                <p style="font-weight: 600; color: var(--accent-blue);">Accenture Badge | Feb 2026</p>
+                <p style="font-size: 0.9rem;">Earned badge for demonstrating practical expertise in applying agentic AI to real-world business challenges.</p>
             </div>
             
             <div class="card">
-                <strong>Master of Commerce (M.Com)</strong><br>
-                <span style="font-size: 0.9rem; color: #64748b;">University of Madras | April 2025</span>
-                <p style="font-size: 0.85rem; margin-top: 10px;">Focus on Advanced Accounting and Financial Management.</p>
+                <div class="icon-box" style="background: #dbeafe; color: #1e40af;"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Master of Commerce (M.Com)</h3>
+                <p style="font-weight: 600; color: var(--accent-blue);">University of Madras | April 2025</p>
+                <p style="font-size: 0.9rem;">Focus on Advanced Accounting and Financial Management.</p>
             </div>
             
             <div class="card">
-                <strong>CMA (USA) – Candidate</strong><br>
-                <span style="font-size: 0.9rem; color: #64748b;">Institute of Management Accountants</span>
-                <p style="font-size: 0.85rem; margin-top: 10px;">Currently pursuing Part 1 (Financial Planning, Performance, and Analytics).</p>
+                <div class="icon-box" style="background: #d1fae5; color: #047857;"><i class="fas fa-chart-line"></i></div>
+                <h3>CMA (USA) – Candidate</h3>
+                <p style="font-weight: 600; color: var(--accent-blue);">Institute of Management Accountants</p>
+                <p style="font-size: 0.9rem;">Currently pursuing Part 1 (Financial Planning, Performance, and Analytics).</p>
             </div>
         </div>
 
     </div>
 
     <footer>
-        <h3 style="margin-top: 0;">Let's Connect</h3>
-        <p>Open to opportunities in Credit Analysis and Process Automation.</p>
+        <h2 style="color: white; margin-top: 0; justify-content: center;">Let's Connect</h2>
+        <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px;">Open to opportunities in Credit Risk, AI Automation, and FinTech.</p>
         
-        <a href="mailto:prabhuofyoga@gmail.com" class="btn">
-            <i class="fas fa-envelope"></i> Email Me
-        </a>
-        <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank" class="btn btn-outline">
-            <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
+        <div style="margin-bottom: 40px;">
+            <a href="mailto:prabhuofyoga@gmail.com" class="btn">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
+            <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank" class="btn btn-outline">
+                <i class="fab fa-linkedin"></i> LinkedIn Profile
+            </a>
+        </div>
         
-        <p style="margin-top: 40px; font-size: 0.85rem; color: #94a3b8;">
-            &copy; 2026 Yogaprabhu S. | Chennai, India | +91 98843 66634
+        <p style="opacity: 0.6; font-size: 0.9rem;">
+            +91 98843 66634 | Chennai, India<br>
+            &copy; 2026 Yogaprabhu S. All rights reserved.
         </p>
     </footer>
 
