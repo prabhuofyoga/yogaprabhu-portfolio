@@ -3,141 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogaprabhu S. | Credit & AI Analyst</title>
+    <title>Resume | Yogaprabhu S.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50; /* Navy Blue */
-            --accent: #3498db; /* Tech Blue */
-            --bg: #f4f7f6;
-            --text: #333;
+            --primary: #2c3e50; /* Dark Slate */
+            --accent: #2980b9; /* Professional Blue */
+            --light-bg: #f8f9fa;
+            --text-color: #333;
+            --border-color: #e0e0e0;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
             margin: 0;
             padding: 0;
-            color: var(--text);
-            background-color: var(--bg);
         }
-        header {
+        .page-wrapper {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+        }
+        .sidebar {
             background-color: var(--primary);
             color: white;
-            padding: 4rem 2rem;
-            text-align: center;
+            padding: 40px 30px;
         }
-        header h1 { margin: 0; font-size: 2.5rem; }
-        header p { margin: 10px 0 0; font-size: 1.2rem; opacity: 0.9; }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-top: -30px;
-            border-radius: 8px;
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1.2;
         }
-        h2 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; color: var(--primary); margin-top: 2rem;}
-        .job-title { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
-        .company { color: var(--accent); font-style: italic; }
-        .badge {
-            background-color: #e1f5fe;
-            color: #0277bd;
+        .profile-role {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            color: #bdc3c7;
+        }
+        .contact-info div {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+        .contact-info i {
+            width: 25px;
+            color: var(--accent);
+        }
+        .sidebar-section {
+            margin-top: 40px;
+        }
+        .sidebar-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .skill-tag {
+            background: rgba(255,255,255,0.1);
             padding: 5px 10px;
             border-radius: 4px;
+            margin-bottom: 8px;
+            display: inline-block;
             font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 10px;
+        }
+        .main-content {
+            padding: 40px;
+            background-color: white;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            margin-top: 0;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 30px;
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+        .job-title {
+            font-size: 1.2rem;
             font-weight: bold;
+            color: var(--text-color);
         }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 8px; }
-        .contact-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
+        .company-name {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .date-range {
+            font-style: italic;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .job-desc ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .job-desc li {
+            margin-bottom: 8px;
+        }
+        .badge-box {
+            border: 1px solid var(--accent);
+            background-color: #eaf6ff;
+            padding: 15px;
             border-radius: 5px;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
-        footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #666; }
-        
-        @media (max-width: 600px) {
-            header { padding: 2rem 1rem; }
-            .container { margin: 0; border-radius: 0; }
+        .project-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .project-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                grid-template-columns: 1fr;
+                margin: 0;
+                box-shadow: none;
+            }
+            .sidebar {
+                padding: 30px 20px;
+            }
+            .main-content {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Yogaprabhu S.</h1>
-    <p>Commercial Credit Underwriter | Agentic AI Specialist</p>
-    <p style="font-size: 0.9rem; margin-top: 5px;">📍 Chennai, India</p>
-</header>
-
-<div class="container">
-
-    <section>
-        <h2>Professional Summary</h2>
-        <p>
-            I am a Commercial Credit Underwriter at Accenture, serving the offshore team of a top-tier American bank. 
-            My expertise lies at the intersection of traditional <strong>credit risk assessment</strong> and <strong>process automation</strong>.
-        </p>
-        <p>
-            Beyond standard underwriting, I specialize in developing custom macros and leveraging Agentic AI to reduce errors and optimize team workflows. 
-            I am currently focused on bridging the gap between financial analysis and the next generation of AI-driven banking tools.
-        </p>
-    </section>
-
-    <section>
-        <h2>Experience</h2>
+<div class="page-wrapper">
+    
+    <aside class="sidebar">
+        <div class="profile-name">Yogaprabhu S.</div>
+        <div class="profile-role">Banking Advisory Associate</div>
         
-        <div class="job">
-            <div class="job-title">Associate (Commercial Credit Underwriter)</div>
-            <div class="company">Accenture (Offshore for Top US Bank) | July 2022 – Present</div>
-            <p><em>Promoted from New Associate in March 2025.</em></p>
-            
-            <ul>
-                <li><strong>Credit Risk Analysis:</strong> Manage end-to-end loan proposals, renewals, and annual reviews for Commercial Credit and Private Wealth Management portfolios.</li>
-                <li><strong>Quality Assurance:</strong> Consistently rated high for Quality Control (QC) by onshore teams; trusted to draft credit memos that require minimal revision before final decision.</li>
-                <li><strong>Stakeholder Management:</strong> Direct collaboration with Onshore Portfolio Managers to ensure seamless credit delivery.</li>
-            </ul>
+        <div class="contact-info">
+            <div><i class="fas fa-map-marker-alt"></i> Chennai, India</div>
+            <div><i class="fas fa-phone"></i> +91 98843 66634</div>
+            <div>
+                <i class="fas fa-envelope"></i> 
+                <a href="mailto:prabhuofyoga@gmail.com">prabhuofyoga@gmail.com</a>
+            </div>
+            <div>
+                <i class="fab fa-linkedin"></i> 
+                <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank">LinkedIn Profile</a>
+            </div>
         </div>
-    </section>
 
-    <section>
-        <h2>Innovation & Automation</h2>
-        <span class="badge">Tech-Enabled Finance</span>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Technical Skills</div>
+            <span class="skill-tag">VBA & Macros</span>
+            <span class="skill-tag">Agentic AI</span>
+            <span class="skill-tag">Database Management</span>
+            <span class="skill-tag">Real Estate Data Mining</span>
+            <span class="skill-tag">Financial Modeling</span>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Languages</div>
+            <div>English (Professional)</div>
+            <div>Tamil (Native)</div>
+        </div>
+    </aside>
+
+    <main class="main-content">
         
-        <p><strong>The "Analyst Log" Macro Project</strong><br>
-        Independently developed a VBA-based tool to automate data logging and timestamping within the team's loan system.</p>
-        <ul>
-            <li><strong>Impact:</strong> Reduced manual entry errors and improved audit trails for the offshore team.</li>
-            <li><strong>Recognition:</strong> Received specific commendation from the Onshore Portfolio Manager for "keen observation and effectiveness."</li>
-        </ul>
-    </section>
+        <p style="font-size: 1.1rem; color: #555; margin-bottom: 40px;">
+            Detail-oriented <strong>Banking Advisory Associate</strong> with a proven track record of accurate credit risk assessment for high-value portfolios. 
+            I distinguish myself by building <strong>custom automation tools</strong> that reduce manual errors and accelerate decision-making. 
+            Currently serving the offshore team of a top-tier US Bank, combining financial acumen with advanced technical problem-solving.
+        </p>
 
-    <section>
-        <h2>Certifications</h2>
-        <div style="margin-bottom: 15px;">
-            <strong>Reinvention with Agentic AI</strong> | <em>Accenture Badge</em><br>
+        <h2 class="section-title">Technical Innovation & Tools</h2>
+        
+        <div class="project-box">
+            <span class="project-title">1. Automated Collateral Analysis Suite</span>
+            <p style="margin: 0; font-size: 0.95rem;">
+                Designed a comprehensive analysis worksheet with an integrated <strong>automated writeup fetcher</strong>. 
+                The tool instantly generates standardized collateral analysis writeups based on raw data inputs, significantly reducing drafting time for complex secured loans.
+            </p>
+        </div>
+
+        <div class="project-box">
+            <span class="project-title">2. Geo-Specific Real Estate Data Aggregator</span>
+            <p style="margin: 0; font-size: 0.95rem;">
+                Built a localized database engine to fetch real estate public record information. 
+                The system utilizes <strong>Zip Code or County/State</strong> inputs to rapidly verify property details, streamlining the due diligence process.
+            </p>
+        </div>
+
+        <div class="project-box">
+            <span class="project-title">3. The "Analyst Log" Macro</span>
+            <p style="margin: 0; font-size: 0.95rem;">
+                Developed a VBA macro to automate timestamped logging within the team's loan system, improving audit trails and reducing clerical errors.
+            </p>
+        </div>
+
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="experience-item">
+            <div class="job-header">
+                <div class="job-title">Banking Advisory Associate</div>
+                <div class="date-range">March 2025 – Present</div>
+            </div>
+            <div class="company-name">Accenture (Offshore for Top US Bank)</div>
+            <div class="job-desc">
+                <p><em>Function: Commercial Credit Underwriter</em></p>
+                <ul>
+                    <li><strong>Credit Analysis:</strong> Lead underwriter for Commercial Credit (up to $5M) and Private Wealth secured lending (up to $25M). Responsible for renewals, annual reviews, and new loan proposals.</li>
+                    <li><strong>Stakeholder Management:</strong> Direct collaboration with Onshore Portfolio Managers. Drafted Credit Memos are utilized in final decision binders with minimal revision.</li>
+                    <li><strong>Quality Control:</strong> Consistently rated high for QC by onshore teams; recognized for "effectiveness and keen observation."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="job-header">
+                <div class="job-title">Banking Advisory New Associate</div>
+                <div class="date-range">July 2022 – March 2025</div>
+            </div>
+            <div class="company-name">Accenture</div>
+            <div class="job-desc">
+                <ul>
+                    <li>Handled query resolution for the onshore team via the internal loan system.</li>
+                    <li>Learned and applied credit policies for US markets.</li>
+                    <li>Consistently maintained high QC ratings, leading to an early promotion to Associate.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Certifications</h2>
+        
+        <div class="badge-box">
+            <div style="display:flex; justify-content:space-between;">
+                <strong style="color: var(--primary);">Reinvention with Agentic AI | Accenture Badge</strong>
+                <span style="font-size:0.9rem; color:#666;">February 2026</span>
+            </div>
             <span style="font-size: 0.9rem; color: #555;">
-                Awarded for demonstrating practical expertise in applying agentic AI to real-world business challenges. 
-                Trained in blending foundational AI knowledge with hands-on workshop application.
+                Completed advanced training on applying Agentic AI to real-world business challenges. Validated ability to drive reinvention and automation within financial workflows.
             </span>
         </div>
-    </section>
 
-    <div style="text-align: center;">
-        <a href="mailto:your-email@example.com" class="contact-btn">Contact Me</a>
-    </div>
+        <h2 class="section-title">Education</h2>
 
+        <div class="education-item">
+            <div class="job-header">
+                <div class="job-title">Master of Commerce (M.Com)</div>
+                <div class="date-range">April 2025</div>
+            </div>
+            <div class="company-name">University of Madras</div>
+        </div>
+
+        <div class="education-item">
+            <div class="job-header">
+                <div class="job-title">Bachelor of Commerce (B.Com)</div>
+                <div class="date-range">June 2022</div>
+            </div>
+            <div class="company-name">University of Madras</div>
+        </div>
+
+        <div class="education-item">
+            <div class="job-header">
+                <div class="job-title">CMA (USA) - Candidate</div>
+                <div class="date-range">In Progress</div>
+            </div>
+            <div class="company-name">Institute of Management Accountants</div>
+            <div><em>Currently preparing for Part 1.</em></div>
+        </div>
+
+    </main>
 </div>
-
-<footer>
-    <p>&copy; 2026 Yogaprabhu S. Hosted on GitHub Pages.</p>
-</footer>
 
 </body>
 </html>
