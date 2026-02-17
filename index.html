@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CSS VARIABLES for easy theming */
+        /* CSS VARIABLES */
         :root {
             --bg-body: #f8fafc;
             --text-dark: #0f172a;
             --text-light: #475569;
-            --accent-blue: #3b82f6; /* Bright tech blue */
+            --accent-blue: #3b82f6;
             --accent-dark: #1e40af;
-            --surface-dark: #020617; /* Deepest navy */
+            --surface-dark: #020617;
             --card-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
             --hover-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
         }
@@ -29,17 +29,16 @@
             line-height: 1.7;
         }
 
-        /* HEADER WITH GRADIENT */
+        /* HEADER */
         header {
             background: linear-gradient(135deg, var(--surface-dark) 0%, #1e3a8a 100%);
             color: white;
-            padding: 100px 20px 140px 20px; /* Extra padding bottom for overlap */
+            padding: 100px 20px 140px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
         
-        /* Subtle background pattern purely with CSS */
         header::before {
             content: '';
             position: absolute;
@@ -76,26 +75,26 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* MAIN CONTAINER */
+        /* CONTAINER */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px 80px 20px;
         }
 
-        /* FLOATING SUMMARY BOX (Overlaps Header) */
+        /* SUMMARY BOX */
         .overlap-box {
             background: white;
             padding: 40px;
             border-radius: 16px;
             box-shadow: var(--card-shadow);
-            margin-top: -80px; /* Creates the overlap effect */
+            margin-top: -80px;
             position: relative;
             z-index: 10;
             border-top: 4px solid var(--accent-blue);
         }
 
-        /* SECTION TITLES */
+        /* HEADINGS */
         h2 {
             font-size: 1.75rem;
             color: var(--surface-dark);
@@ -116,7 +115,7 @@
             border-radius: 4px;
         }
 
-        /* MODERN CARD GRID */
+        /* GRIDS */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -140,7 +139,6 @@
             border-color: #bfdbfe;
         }
         
-        /* Styled Icon Boxes */
         .icon-box {
             width: 50px;
             height: 50px;
@@ -162,7 +160,7 @@
             font-weight: 700;
         }
 
-        /* MODERN TIMELINE */
+        /* TIMELINE */
         .timeline {
             position: relative;
             padding-left: 40px;
@@ -184,7 +182,6 @@
             margin-bottom: 40px;
         }
         
-        /* Timeline Dot */
         .job-card::before {
             content: '';
             position: absolute;
@@ -197,10 +194,6 @@
             border-radius: 50%;
             z-index: 2;
             box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
-        }
-        
-        .job-header {
-            margin-bottom: 15px;
         }
         
         .job-role {
@@ -216,13 +209,8 @@
             margin-top: 5px;
         }
 
-        .job-card ul {
-            padding-left: 20px;
-            color: var(--text-light);
-        }
-        .job-card li {
-            margin-bottom: 10px;
-        }
+        .job-card ul { padding-left: 20px; color: var(--text-light); }
+        .job-card li { margin-bottom: 10px; }
 
         /* FOOTER */
         footer {
@@ -230,7 +218,6 @@
             color: white;
             text-align: center;
             padding: 80px 20px;
-            position: relative;
         }
         
         .btn {
@@ -252,8 +239,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
         }
-        
-        .btn i { margin-right: 10px; }
 
         .btn-outline {
             background: transparent;
@@ -308,15 +293,15 @@
             </div>
             
             <div class="card">
-                <div class="icon-box"><i class="fas fa-file-code"></i></div>
-                <h3>Automated "Analyst Log"</h3>
-                <p>Developed a VBA-based tool to timestamp and standardize credit comments and audit trails. Reduced documentation errors by ~15% and was adopted as a best practice.</p>
+                <div class="icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Automated Collateral Analysis</h3>
+                <p>Designed a proprietary analysis worksheet with an integrated <strong>automated writeup fetcher</strong>. The tool instantly generates standardized collateral writeups based on inputs from my custom worksheet.</p>
             </div>
             
             <div class="card">
-                <div class="icon-box"><i class="fas fa-map-location-dot"></i></div>
-                <h3>Tax Bill Verification Script</h3>
-                <p>Created an automated workflow to cross-reference US County real estate tax data (e.g., NETROnline), reducing manual lookup time by hours per week.</p>
+                <div class="icon-box"><i class="fas fa-search-location"></i></div>
+                <h3>Geo-Specific Public Record DB</h3>
+                <p>Built a localized database engine to fetch real estate public record information. Uses <strong>Zip Code or County/State</strong> inputs to rapidly verify property details for Private Wealth deals.</p>
             </div>
         </div>
 
@@ -330,8 +315,8 @@
                 </div>
                 <ul>
                     <li><strong>Complex Credit Actions:</strong> Spearheading underwriting for complex New Loan Proposals and Renewals for a diverse commercial portfolio (C&I and CRE).</li>
-                    <li><strong>Onshore Collaboration:</strong> Serving as primary point of contact for Onshore Portfolio Managers, resolving complex queries regarding borrower financials via the loan system.</li>
-                    <li><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating, recognized for delivering zero-defect credit memos requiring minimal revision.</li>
+                    <li><strong>Onshore Collaboration:</strong> Serving as primary point of contact for Onshore Portfolio Managers, resolving complex queries regarding borrower financials.</li>
+                    <li><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating, recognized for delivering zero-defect credit memos.</li>
                 </ul>
             </div>
 
@@ -375,7 +360,7 @@
     </div>
 
     <footer>
-        <h2 style="color: white; margin-top: 0; justify-content: center;">Let's Connect</h2>
+        <h2 style="color: white; margin-top: 0;">Let's Connect</h2>
         <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px;">Open to opportunities in Credit Risk, AI Automation, and FinTech.</p>
         
         <div style="margin-bottom: 40px;">
