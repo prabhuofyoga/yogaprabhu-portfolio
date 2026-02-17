@@ -4,87 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogaprabhu S. | Portfolio</title>
-    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css)">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; color: #333; background: #f4f4f4; }
-        header { background: #0f172a; color: white; padding: 60px 20px; text-align: center; }
-        h1 { margin: 0; font-size: 2.5rem; }
-        .subtitle { color: #94a3b8; font-size: 1.2rem; }
-        .container { max-width: 800px; margin: auto; padding: 40px 20px; }
-        .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card h3 { color: #0f172a; margin-top: 0; }
-        .job-title { font-weight: bold; font-size: 1.1rem; color: #0f172a; }
-        .company { color: #666; font-size: 0.9rem; display: block; margin-bottom: 10px; }
-        .btn { display: inline-block; background: #0f172a; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8rem; }
+        :root {
+            --primary: #0f172a; /* Deep Navy */
+            --accent: #2563eb;  /* Bright Blue */
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            background-color: white;
+            line-height: 1.6;
+        }
+
+        /* HERO HEADER */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin: 0 auto;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        .hero-tags {
+            margin-top: 20px;
+        }
+        
+        .tag {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin: 0 5px;
+            display: inline-block;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* SECTION TITLES */
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 40px;
+            padding-bottom: 5px;
+        }
+
+        /* SUMMARY BOX */
+        .summary-box {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            border-left: 5px solid var(--accent);
+        }
+
+        /* PROJECTS GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .card-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* EXPERIENCE TIMELINE */
+        .job-item {
+            border-left: 3px solid #e2e8f0;
+            padding-left: 25px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .job-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            left: -7.5px;
+            top: 5px;
+        }
+        
+        .job-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .job-company {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .job-desc ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .job-desc li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--bg-light);
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid #cbd5e1;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 40px 20px; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Yogaprabhu S.</h1>
-    <p class="subtitle">Banking Advisory Associate & Process Engineer</p>
-</header>
+    <header>
+        <h1>Yogaprabhu S.</h1>
+        <p class="subtitle">Commercial Credit Underwriter | Financial Analyst | Process Improvement Specialist</p>
+        <div class="hero-tags">
+            <span class="tag">Credit Risk</span>
+            <span class="tag">Agentic AI</span>
+            <span class="tag">VBA Automation</span>
+        </div>
+    </header>
 
-<div class="container">
-    
-    <div class="card" style="text-align: center; background: transparent; box-shadow: none;">
-        <p style="font-size: 1.1rem;">
-            Bridging the gap between financial risk assessment and technical innovation. 
-            I build custom tools to automate collateral analysis and data mining, ensuring accuracy at scale.
-        </p>
-    </div>
+    <div class="container">
+        
+        <div class="summary-box">
+            <h3 style="margin-top: 0; color: var(--primary);">About Me</h3>
+            <p style="margin-bottom: 0;">
+                Results-oriented Commercial Credit Underwriter with nearly 4 years of experience at Accenture supporting a Top-Tier U.S. Bank. 
+                I possess a unique hybrid skill set combining deep financial acumen with technical proficiency in <strong>Agentic AI & VBA Automation</strong>. 
+                Proven ability to apply advanced technology to solve real-world credit challenges, reducing manual errors and improving team efficiency.
+            </p>
+        </div>
 
-    <h2 style="color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">Engineering & Tools</h2>
-    
-    <div class="card">
-        <h3><i class="fas fa-robot"></i> Automated Collateral Analysis</h3>
-        <p>A custom engine that ingests raw worksheet data to instantly generate standardized writeups, reducing drafting time while maintaining 100% compliance.</p>
-    </div>
+        <h2>Technical Initiatives</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                <h3>Agentic AI Implementation</h3>
+                <p>Applying concepts from "Reinvention with Agentic AI" to explore autonomous workflows for preliminary credit data gathering and risk assessment.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-file-excel"></i></div>
+                <h3>Automated "Analyst Log"</h3>
+                <p>Developed a VBA macro to timestamp and standardize analysis write-ups. Reduced documentation errors by ~15% and was adopted as a best practice.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-search-location"></i></div>
+                <h3>Tax Bill Verification Script</h3>
+                <p>Created an automated workflow to cross-reference US County real estate tax data (e.g., NETROnline), reducing manual lookup time by hours per week.</p>
+            </div>
+        </div>
 
-    <div class="card">
-        <h3><i class="fas fa-database"></i> Geo-Specific Data Aggregator</h3>
-        <p>Localized database tool using Zip/County inputs to fetch real estate public records, streamlining due diligence for Private Wealth deals.</p>
-    </div>
+        <h2>Experience</h2>
+        
+        <div class="job-item">
+            <div class="job-role">Associate – Commercial Credit Underwriting</div>
+            <span class="job-company">Accenture (Service Provider for Top U.S. Bank) | March 2025 – Present</span>
+            <div class="job-desc">
+                <ul>
+                    <li><strong>Credit Underwriting:</strong> Spearheading New Loan Proposals and Renewals for a diverse portfolio (C&I and CRE).</li>
+                    <li><strong>Onshore Collaboration:</strong> Serving as primary contact for Onshore Portfolio Managers, resolving complex queries on borrower financials and risk triggers.</li>
+                    <li><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating with zero-defect credit memos.</li>
+                </ul>
+            </div>
+        </div>
 
-    <h2 style="color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">Experience</h2>
+        <div class="job-item">
+            <div class="job-role">New Associate – Commercial Credit Underwriting</div>
+            <span class="job-company">Accenture | July 2022 – March 2025</span>
+            <div class="job-desc">
+                <ul>
+                    <li><strong>Financial Spreading:</strong> Detailed analysis of Balance Sheet, P&L, and Cash Flow to evaluate borrower health.</li>
+                    <li><strong>Portfolio Monitoring:</strong> Conducted Annual Reviews and interim monitoring within strict SLAs.</li>
+                    <li><strong>Tech-Driven Efficiency:</strong> Independently built offline macros to verify real estate tax bill statuses.</li>
+                </ul>
+            </div>
+        </div>
 
-    <div class="card">
-        <div class="job-title">Banking Advisory Associate</div>
-        <span class="company">Accenture (Offshore for Top US Bank) | Mar 2025 – Present</span>
-        <p>Lead underwriter for Commercial Credit ($5M) and Private Wealth ($25M) portfolios. Spearheading Agentic AI workflows to optimize credit decisioning.</p>
-    </div>
+        <h2>Education & Certifications</h2>
+        <div class="grid">
+            <div class="card">
+                <strong>Reinvention with Agentic AI</strong><br>
+                <span style="font-size: 0.9rem; color: #64748b;">Accenture Badge | Feb 2026</span>
+                <p style="font-size: 0.85rem; margin-top: 10px;">Earned badge for demonstrating practical expertise in applying agentic AI to business challenges.</p>
+            </div>
+            
+            <div class="card">
+                <strong>Master of Commerce (M.Com)</strong><br>
+                <span style="font-size: 0.9rem; color: #64748b;">University of Madras | April 2025</span>
+                <p style="font-size: 0.85rem; margin-top: 10px;">Focus on Advanced Accounting and Financial Management.</p>
+            </div>
+            
+            <div class="card">
+                <strong>CMA (USA) – Candidate</strong><br>
+                <span style="font-size: 0.9rem; color: #64748b;">Institute of Management Accountants</span>
+                <p style="font-size: 0.85rem; margin-top: 10px;">Currently pursuing Part 1 (Financial Planning, Performance, and Analytics).</p>
+            </div>
+        </div>
 
-    <div class="card">
-        <div class="job-title">Banking Advisory New Associate</div>
-        <span class="company">Accenture | Jul 2022 – Mar 2025</span>
-        <p>Managed query resolution and credit policy application for US markets. Promoted early due to high QC ratings and process improvements.</p>
-    </div>
-
-    <h2 style="color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">Credentials</h2>
-    
-    <div class="card">
-        <strong>Reinvention with Agentic AI</strong><br>
-        <span style="color: #666;">Accenture Badge | Feb 2026</span>
-    </div>
-    <div class="card">
-        <strong>Master of Commerce (M.Com)</strong><br>
-        <span style="color: #666;">Madras University | Apr 2025</span>
-    </div>
-    <div class="card">
-        <strong>CMA (USA) - Candidate</strong><br>
-        <span style="color: #666;">Institute of Management Accountants</span>
     </div>
 
     <footer>
-        <a href="mailto:prabhuofyoga@gmail.com" class="btn">Email Me</a>
-        <br><br>
-        <a href="[https://www.linkedin.com/in/yogaprabhu/](https://www.linkedin.com/in/yogaprabhu/)" style="color: #0f172a;">LinkedIn Profile</a>
-        <br><br>
-        © 2026 Yogaprabhu S.
+        <h3 style="margin-top: 0;">Let's Connect</h3>
+        <p>Open to opportunities in Credit Analysis and Process Automation.</p>
+        
+        <a href="mailto:prabhuofyoga@gmail.com" class="btn">
+            <i class="fas fa-envelope"></i> Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank" class="btn btn-outline">
+            <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        
+        <p style="margin-top: 40px; font-size: 0.85rem; color: #94a3b8;">
+            &copy; 2026 Yogaprabhu S. | Chennai, India | +91 98843 66634
+        </p>
     </footer>
-
-</div>
 
 </body>
 </html>
