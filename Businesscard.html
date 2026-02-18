@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card - Yogaprabhu S.</title>
+    <!-- Fonts: Inter for clean, modern FinTech look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-bg: #0f172a; /* Deep Navy Blue */
+            --accent-blue: #3b82f6; /* Electric Blue */
+            --accent-cyan: #06b6d4; /* Cyan for tech details */
+            --text-white: #f8fafc;
+            --text-silver: #94a3b8;
+            
+            /* Card Dimensions */
+            --card-width: 3.5in;
+            --card-height: 2in;
+            --scale: 2; /* Scaling up for screen viewing */
+        }
+
+        body {
+            background-color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .section-label {
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Card Container */
+        .card-wrapper {
+            position: relative;
+            width: calc(var(--card-width) * var(--scale));
+            height: calc(var(--card-height) * var(--scale));
+            background: var(--primary-bg);
+            /* Subtle texture gradient */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- SHARED STYLES --- */
+        /* Tech Grid Overlay */
+        .tech-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- FRONT SIDE --- */
+        .front-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+        }
+
+        .name {
+            color: var(--text-white);
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .title {
+            color: var(--accent-blue);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 35px;
+        }
+
+        .tagline {
+            color: var(--text-silver);
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            position: absolute;
+            bottom: 30px;
+        }
+
+        /* --- BACK SIDE --- */
+        .back-side {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .col-left {
+            flex: 1.3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 50px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            color: var(--text-white);
+        }
+
+        .icon-box {
+            width: 24px;
+            display: flex;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .icon-box i {
+            color: var(--accent-cyan);
+            font-size: 14px;
+        }
+
+        .contact-text {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .col-right {
+            flex: 0.7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-right: 30px;
+            border-left: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.1);
+        }
+
+        .qr-wrapper {
+            padding: 6px;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .qr-code {
+            display: block;
+            width: 75px;
+            height: 75px;
+        }
+
+        .scan-text {
+            color: var(--text-silver);
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* SVG Animation */
+        @keyframes pulse {
+            0% { opacity: 0.6; r: 3; }
+            50% { opacity: 1; r: 4.5; }
+            100% { opacity: 0.6; r: 3; }
+        }
+        .pulse-node {
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- FRONT SIDE -->
+    <div>
+        <div class="section-label">Front Side</div>
+        <div class="card-wrapper">
+            <div class="tech-grid"></div>
+            
+            <div class="front-side">
+                <div class="logo-container">
+                    <!-- CUSTOM DESIGNED SVG LOGO -->
+                    <svg width="70" height="80" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="shieldGrad" x1="0" y1="0" x2="100" y2="100">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#1d4ed8" />
+                            </linearGradient>
+                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Left Side: Solid Shield (Stability) -->
+                        <path d="M50 15 L20 25 V50 C20 75 50 95 50 95 V15 Z" fill="url(#shieldGrad)" />
+                        
+                        <!-- Right Side: Circuit Lines (AI Tech) -->
+                        <!-- Outline of shield right side -->
+                        <path d="M50 15 L80 25 V50 C80 75 50 95 50 95" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Internal Circuits -->
+                        <path d="M80 35 H65 L58 42" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="80" cy="35" r="2.5" fill="#06b6d4" />
+                        
+                        <path d="M80 60 H70 L60 50" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="80" cy="60" r="2.5" fill="#06b6d4" />
+
+                        <!-- Central Fusion Node -->
+                        <circle cx="50" cy="50" r="6" fill="#ffffff" filter="url(#glow)" />
+                        <circle cx="50" cy="50" r="3" fill="#06b6d4" class="pulse-node" />
+                    </svg>
+                </div>
+
+                <div class="name">Yogaprabhu S.</div>
+                <div class="title">Commercial Credit Underwriter | Agentic AI Specialist</div>
+                <div class="tagline">Bridging Financial Analysis & Process Automation</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK SIDE -->
+    <div>
+        <div class="section-label">Back Side</div>
+        <div class="card-wrapper">
+            <div class="tech-grid"></div>
+            
+            <div class="back-side">
+                <div class="col-left">
+                    <div class="contact-row">
+                        <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                        <span class="contact-text">+91 98843 66634</span>
+                    </div>
+                    <div class="contact-row">
+                        <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                        <span class="contact-text">prabhuofyoga@gmail.com</span>
+                    </div>
+                    <div class="contact-row">
+                        <div class="icon-box"><i class="fa-brands fa-linkedin-in"></i></div>
+                        <span class="contact-text">linkedin.com/in/yogaprabhu</span>
+                    </div>
+                </div>
+
+                <div class="col-right">
+                    <div class="qr-wrapper">
+                        <!-- High Contrast QR for Navy Background -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://prabhuofyoga.github.io/yogaprabhu-portfolio/&bgcolor=ffffff&color=000000&margin=0" alt="Portfolio QR" class="qr-code">
+                    </div>
+                    <span class="scan-text">Scan for Portfolio</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+  </html>
