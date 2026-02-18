@@ -205,7 +205,26 @@
         .pulse-node {
             animation: pulse 3s infinite ease-in-out;
         }
+@media print {
+    /* 1. Force Background Colors */
+    body, .card, .front, .back {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background-color: #0f172a !important; /* Forces the Navy Blue */
+    }
 
+    /* 2. Remove Default Page Margins */
+    @page {
+        margin: 0;
+        size: auto;
+    }
+
+    /* 3. Hide any elements you don't want printed (like a 'Download' button) */
+    .no-print {
+        display: none;
+    }
+        }
+        
     </style>
 </head>
 <body>
