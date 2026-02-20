@@ -1,393 +1,471 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogaprabhu S. | FinTech Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <title>Yogaprabhu S. | FinTech & AI Portfolio</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Tailwind CSS (via CDN for immediate GitHub Pages compatibility) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        fintech: {
+                            dark: '#020617', // slate-950
+                            panel: '#0f172a', // slate-900
+                            border: '#1e293b', // slate-800
+                            blue: '#3b82f6', // blue-500
+                            cyan: '#06b6d4', // cyan-500
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* CSS VARIABLES */
-        :root {
-            --bg-body: #f8fafc;
-            --text-dark: #0f172a;
-            --text-light: #475569;
-            --accent-blue: #3b82f6;
-            --accent-dark: #1e40af;
-            --surface-dark: #020617;
-            --card-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
-            --hover-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-        }
-        
+        /* Custom CSS for Advanced Effects */
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-dark);
-            background-color: var(--bg-body);
-            line-height: 1.7;
-        }
-
-        /* HEADER */
-        header {
-            background: linear-gradient(135deg, var(--surface-dark) 0%, #1e3a8a 100%);
-            color: white;
-            padding: 100px 20px 140px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 40%),
-                              radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
-            pointer-events: none;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin: 0 0 15px 0;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-        
-        .subtitle {
-            font-size: 1.25rem;
+            background-color: #020617;
             color: #94a3b8;
-            margin: 0 auto 30px auto;
-            max-width: 700px;
-            font-weight: 400;
+            overflow-x: hidden;
         }
 
-        .tag {
-            background: rgba(255,255,255,0.1);
-            color: #bfdbfe;
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin: 0 6px;
-            display: inline-block;
-            border: 1px solid rgba(255,255,255,0.2);
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        /* CONTAINER */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px 80px 20px;
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Glowing Border Hover Effect */
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+        .hover-glow:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+            transform: translateY(-5px);
         }
 
-        /* SUMMARY BOX */
-        .overlap-box {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            margin-top: -80px;
-            position: relative;
-            z-index: 10;
-            border-top: 4px solid var(--accent-blue);
-        }
-
-        /* HEADINGS */
-        h2 {
-            font-size: 1.75rem;
-            color: var(--surface-dark);
-            font-weight: 800;
-            margin-top: 80px;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-        }
-        
-        h2::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 30px;
-            background: var(--accent-blue);
-            margin-right: 15px;
-            border-radius: 4px;
-        }
-
-        /* GRIDS */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            height: 100%;
-            box-sizing: border-box;
-        }
-        
-        .card:hover {
-            transform: translateY(-7px);
-            box-shadow: var(--hover-shadow);
-            border-color: #bfdbfe;
-        }
-        
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            background: #eff6ff;
-            color: var(--accent-blue);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
-        }
-        
-        .card h3 {
-            margin: 0 0 15px 0;
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        /* TIMELINE */
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .timeline::before {
+        /* Timeline Line */
+        .timeline-line::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 10px;
+            left: 20px;
+            top: 0;
             bottom: 0;
-            width: 3px;
-            background: #e2e8f0;
-            border-radius: 2px;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #06b6d4, transparent);
+            opacity: 0.3;
         }
-        
-        .job-card {
-            position: relative;
-            margin-bottom: 40px;
-        }
-        
-        .job-card::before {
-            content: '';
-            position: absolute;
-            left: -46px;
-            top: 8px;
-            width: 16px;
-            height: 16px;
-            background: white;
-            border: 4px solid var(--accent-blue);
-            border-radius: 50%;
-            z-index: 2;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
-        }
-        
-        .job-role {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-        
-        .job-company {
-            color: var(--accent-blue);
-            font-weight: 600;
-            display: block;
-            margin-top: 5px;
-        }
-
-        .job-card ul { padding-left: 20px; color: var(--text-light); }
-        .job-card li { margin-bottom: 10px; }
-
-        /* FOOTER */
-        footer {
-            background: var(--surface-dark);
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            background: var(--accent-blue);
-            color: white;
-            padding: 14px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            margin: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        .btn:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.3);
-            box-shadow: none;
-        }
-        
-        .btn-outline:hover {
-            background: white;
-            color: var(--surface-dark);
-            border-color: white;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            header { padding-bottom: 100px; }
-            .overlap-box { margin-top: -60px; padding: 25px; }
-            .timeline { padding-left: 30px; }
-            .job-card::before { left: -37px; }
+        @media (min-width: 768px) {
+            .timeline-line::before { left: 50%; transform: translateX(-50%); }
         }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-fintech-blue selection:text-white">
 
-    <header>
-        <h1>Yogaprabhu S.</h1>
-        <p class="subtitle">Commercial Credit Underwriter | Financial Analyst | Process Improvement Specialist</p>
-        <div class="hero-tags">
-            <span class="tag">Credit Risk Analysis</span>
-            <span class="tag">Agentic AI</span>
-            <span class="tag">VBA Automation</span>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 border-b border-transparent">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tighter text-white flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-sm">Y</span>
+                <span>Yogaprabhu<span class="text-blue-500">.</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="text-slate-400 hover:text-white transition-colors">Profile</a>
+                <a href="#initiatives" class="text-slate-400 hover:text-white transition-colors">Tech Initiatives</a>
+                <a href="#experience" class="text-slate-400 hover:text-white transition-colors">Experience</a>
+                <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Connect</a>
+            </div>
+            <!-- Mobile Menu Icon (Visual Only) -->
+            <button class="md:hidden text-slate-300">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-[90vh] flex items-center pt-20 pb-24 overflow-hidden">
+        <!-- Background Ambient Blobs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+            <div class="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-cyan-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="max-w-3xl">
+                <div class="reveal">
+                    <p class="font-mono text-cyan-400 mb-4 flex items-center gap-2">
+                        <i class="fas fa-terminal text-xs"></i> System.out.println("Hello, World!");
+                    </p>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                        Yogaprabhu S.
+                    </h1>
+                </div>
+                
+                <div class="reveal delay-100">
+                    <h2 class="text-2xl md:text-3xl text-slate-300 font-light mb-8 leading-relaxed">
+                        Commercial Credit Underwriter <span class="text-blue-500 font-bold">|</span> Financial Analyst <span class="text-blue-500 font-bold">|</span> Process Improvement Specialist
+                    </h2>
+                </div>
+
+                <div class="reveal delay-200 flex flex-wrap gap-3 mb-12">
+                    <span class="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium backdrop-blur-sm">
+                        <i class="fas fa-chart-pie mr-2"></i>Credit Risk Analysis
+                    </span>
+                    <span class="px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-medium backdrop-blur-sm">
+                        <i class="fas fa-robot mr-2"></i>Agentic AI
+                    </span>
+                    <span class="px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium backdrop-blur-sm">
+                        <i class="fas fa-code mr-2"></i>VBA Automation
+                    </span>
+                </div>
+
+                <div class="reveal delay-300 flex items-center gap-6">
+                    <a href="#contact" class="px-8 py-4 bg-white text-slate-900 rounded-lg font-semibold hover:bg-slate-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+                        Let's Connect
+                    </a>
+                    <a href="#experience" class="px-8 py-4 bg-transparent text-white border border-slate-700 rounded-lg font-semibold hover:border-slate-500 transition-colors">
+                        View Experience
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce text-slate-500">
+            <span class="text-xs font-mono mb-2 uppercase tracking-widest">Scroll</span>
+            <i class="fas fa-arrow-down"></i>
         </div>
     </header>
 
-    <div class="container">
-        
-        <div class="overlap-box">
-            <h3 style="margin-top: 0; font-size: 1.4rem; color: var(--text-dark);">Executive Profile</h3>
-            <p style="margin-bottom: 0; font-size: 1.05rem; color: var(--text-light);">
-                Results-oriented Commercial Credit Underwriter with nearly 4 years of experience at Accenture supporting a Top-Tier U.S. Bank. 
-                I distinguish myself with a hybrid skill set combining deep financial acumen with technical proficiency in <strong>Agentic AI & VBA Automation</strong>. 
-                I apply advanced technology to solve real-world credit challenges, significantly reducing errors and improving team efficiency.
-            </p>
-        </div>
+    <!-- Main Content Container -->
+    <main class="relative z-20">
 
-        <h2>Technical Initiatives & Tools</h2>
-        <div class="grid">
-            
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
-                <h3>Automated Writeup Fetcher</h3>
-                <p>Designed a proprietary analysis worksheet with an integrated <strong>automated writeup fetcher</strong>. The tool instantly generates standardized collateral analysis writeups based on data inputs from my custom worksheet.</p>
-            </div>
-            
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-search-location"></i></div>
-                <h3>Geo-Specific Public Record DB</h3>
-                <p>Built a localized database engine to fetch real estate public record information. Uses <strong>Zip Code or County/State</strong> inputs to rapidly verify <strong>tax bill status and assessor details</strong> for Private Wealth deals.</p>
-            </div>
-
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-brain"></i></div>
-                <h3>Agentic AI Implementation</h3>
-                <p>Applying concepts from <strong>"Reinvention with Agentic AI"</strong> training to explore autonomous workflows for preliminary credit data gathering and risk assessment.</p>
-            </div>
-
-        </div>
-
-        <h2>Professional Experience</h2>
-        <div class="timeline">
-            
-            <div class="card job-card">
-                <div class="job-header">
-                    <div class="job-role">Associate – Commercial Credit Underwriting</div>
-                    <span class="job-company">Accenture (Service Provider for Top U.S. Bank) | March 2025 – Present</span>
+        <!-- Executive Profile -->
+        <section id="about" class="container max-w-5xl mx-auto px-6 relative mt-12 mb-32">
+            <div class="glass-panel p-8 md:p-12 rounded-2xl border-t-4 border-t-blue-500 reveal">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 text-blue-400 text-2xl">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Executive Profile</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed">
+                            Results-oriented Commercial Credit Underwriter with nearly <span class="text-white font-semibold">4 years of experience at Accenture</span> supporting a Top-Tier U.S. Bank. 
+                            I distinguish myself with a hybrid skill set combining deep financial acumen with technical proficiency in <span class="text-cyan-400 font-semibold">Agentic AI & VBA Automation</span>. 
+                            I apply advanced technology to solve real-world credit challenges, significantly reducing errors and improving team efficiency.
+                        </p>
+                    </div>
                 </div>
-                <ul>
-                    <li><strong>Complex Credit Actions:</strong> Spearheading underwriting for complex New Loan Proposals and Renewals for a diverse commercial portfolio (C&I and CRE).</li>
-                    <li><strong>Onshore Collaboration:</strong> Serving as primary point of contact for Onshore Portfolio Managers, resolving complex queries regarding borrower financials.</li>
-                    <li><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating, recognized for delivering zero-defect credit memos.</li>
-                </ul>
             </div>
+        </section>
 
-            <div class="card job-card">
-                <div class="job-header">
-                    <div class="job-role">New Associate – Commercial Credit Underwriting</div>
-                    <span class="job-company">Accenture (Service Provider for Top U.S. Bank) | July 2022 – March 2025</span>
+        <!-- Technical Initiatives -->
+        <section id="initiatives" class="py-20 bg-fintech-panel/30 border-y border-white/5">
+            <div class="container max-w-6xl mx-auto px-6">
+                <div class="mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-4">
+                        <span class="w-10 h-1 bg-blue-500 rounded-full"></span>
+                        Technical Initiatives & Tools
+                    </h2>
+                    <p class="text-slate-400 max-w-2xl ml-14">Bridging the gap between traditional financial analysis and modern autonomous workflows.</p>
                 </div>
-                <ul>
-                    <li><strong>Financial Spreading:</strong> Performed detailed spreading of company financial statements (Balance Sheet, P&L, Cash Flow) to evaluate borrower health.</li>
-                    <li><strong>Portfolio Monitoring:</strong> Conducted routine Annual Reviews and interim monitoring, ensuring risk ratings were updated accurately within SLAs.</li>
-                    <li><strong>Recognition:</strong> Received appreciation from Onshore Portfolio Manager for "keen observations" that identified credit risks early.</li>
-                </ul>
-            </div>
-        </div>
 
-        <h2>Education & Certifications</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="icon-box" style="background: #e0e7ff; color: #4338ca;"><i class="fas fa-award"></i></div>
-                <h3>Reinvention with Agentic AI</h3>
-                <p style="font-weight: 600; color: var(--accent-blue);">Accenture Badge | Feb 2026</p>
-                <p style="font-size: 0.9rem;">Earned badge for demonstrating practical expertise in applying agentic AI to real-world business challenges.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="glass-panel p-8 rounded-2xl hover-glow reveal group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all"></div>
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-6 border border-blue-500/30">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Automated Writeup Fetcher</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Designed a proprietary analysis worksheet with an integrated <strong class="text-slate-200">automated writeup fetcher</strong>. The tool instantly generates standardized collateral analysis writeups based on data inputs from my custom worksheet.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-panel p-8 rounded-2xl hover-glow reveal delay-100 group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-all"></div>
+                        <div class="w-14 h-14 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-6 border border-cyan-500/30">
+                            <i class="fas fa-search-location"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Geo-Specific Public Record DB</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Built a localized database engine to fetch real estate public record information. Uses <strong class="text-slate-200">Zip Code or County/State</strong> inputs to rapidly verify <strong class="text-slate-200">tax bill status and assessor details</strong> for Private Wealth deals.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-panel p-8 rounded-2xl hover-glow reveal delay-200 group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all"></div>
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6 border border-emerald-500/30">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Agentic AI Implementation</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Applying concepts from <strong class="text-slate-200">"Reinvention with Agentic AI"</strong> training to explore autonomous workflows for preliminary credit data gathering and risk assessment.
+                        </p>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section id="experience" class="py-32 relative">
+            <div class="container max-w-4xl mx-auto px-6">
+                <div class="mb-20 text-center reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Professional Experience</h2>
+                    <p class="text-slate-400">Career progression driving quality and efficiency in commercial credit.</p>
+                </div>
+
+                <div class="relative timeline-line">
+                    
+                    <!-- Job 1 -->
+                    <div class="relative mb-16 md:flex justify-between items-center w-full reveal">
+                        <!-- Desktop Date -->
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <span class="font-mono text-cyan-400 bg-cyan-500/10 px-4 py-2 rounded-full border border-cyan-500/20 inline-block text-sm">March 2025 – Present</span>
+                        </div>
+                        
+                        <!-- Timeline Node -->
+                        <div class="absolute left-[20px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#020617] shadow-[0_0_10px_rgba(59,130,246,0.8)] z-10"></div>
+                        
+                        <!-- Content -->
+                        <div class="pl-12 md:pl-0 md:w-5/12 w-full">
+                            <div class="glass-panel p-6 rounded-2xl hover:border-blue-500/50 transition-colors">
+                                <!-- Mobile Date -->
+                                <span class="md:hidden font-mono text-cyan-400 text-xs mb-2 block">March 2025 – Present</span>
+                                <h3 class="text-xl font-bold text-white">Associate <span class="text-sm font-normal text-slate-400 block mt-1">Commercial Credit Underwriting</span></h3>
+                                <p class="text-blue-400 text-sm font-semibold mb-4 mt-2">Accenture <span class="text-slate-500 font-normal">(Service Provider for Top U.S. Bank)</span></p>
+                                <ul class="space-y-3 text-slate-400 text-sm">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 text-xs"></i>
+                                        <span><strong>Complex Credit Actions:</strong> Spearheading underwriting for complex New Loan Proposals and Renewals for a diverse commercial portfolio (C&I and CRE).</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 text-xs"></i>
+                                        <span><strong>Onshore Collaboration:</strong> Serving as primary point of contact for Onshore Portfolio Managers, resolving complex queries.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-3 text-xs"></i>
+                                        <span><strong>Quality Control:</strong> Consistently maintaining a "High QC" rating, recognized for delivering zero-defect credit memos.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative md:flex justify-between items-center w-full reveal delay-100">
+                        <!-- Content (Flipped for desktop alternate pattern) -->
+                        <div class="pl-12 md:pl-0 md:w-5/12 w-full md:text-right">
+                            <div class="glass-panel p-6 rounded-2xl hover:border-blue-500/50 transition-colors">
+                                <!-- Mobile Date -->
+                                <span class="md:hidden font-mono text-slate-400 text-xs mb-2 block">July 2022 – March 2025</span>
+                                <h3 class="text-xl font-bold text-white">New Associate <span class="text-sm font-normal text-slate-400 block mt-1">Commercial Credit Underwriting</span></h3>
+                                <p class="text-blue-400 text-sm font-semibold mb-4 mt-2">Accenture <span class="text-slate-500 font-normal">(Service Provider for Top U.S. Bank)</span></p>
+                                <ul class="space-y-3 text-slate-400 text-sm text-left">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-slate-500 mt-1 mr-3 text-xs"></i>
+                                        <span><strong>Financial Spreading:</strong> Performed detailed spreading of company financial statements to evaluate borrower health.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-slate-500 mt-1 mr-3 text-xs"></i>
+                                        <span><strong>Portfolio Monitoring:</strong> Conducted routine Annual Reviews and interim monitoring, ensuring risk ratings were updated accurately.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-slate-500 mt-1 mr-3 text-xs"></i>
+                                        <span><strong>Recognition:</strong> Received appreciation from Onshore Portfolio Manager for "keen observations" that identified credit risks early.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Node -->
+                        <div class="absolute left-[20px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slate-600 border-4 border-[#020617] z-10"></div>
+                        
+                        <!-- Desktop Date -->
+                        <div class="hidden md:block w-5/12 pl-8 text-left">
+                            <span class="font-mono text-slate-400 text-sm">July 2022 – March 2025</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section class="py-20 bg-fintech-panel/30 border-t border-white/5">
+            <div class="container max-w-6xl mx-auto px-6">
+                <div class="mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-4">
+                        <span class="w-10 h-1 bg-cyan-500 rounded-full"></span>
+                        Education & Credentials
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Cert 1 -->
+                    <div class="glass-panel p-6 rounded-xl flex items-start gap-4 reveal">
+                        <div class="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Reinvention with Agentic AI</h3>
+                            <p class="text-cyan-400 text-sm mb-2 font-medium">Accenture Badge | Feb 2026</p>
+                            <p class="text-slate-400 text-xs">Demonstrating practical expertise in applying agentic AI to real-world business challenges.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cert 2 -->
+                    <div class="glass-panel p-6 rounded-xl flex items-start gap-4 reveal delay-100">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">Master of Commerce (M.Com)</h3>
+                            <p class="text-blue-400 text-sm mb-2 font-medium">University of Madras | April 2025</p>
+                            <p class="text-slate-400 text-xs">Focus on Advanced Accounting and Financial Management.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cert 3 -->
+                    <div class="glass-panel p-6 rounded-xl flex items-start gap-4 reveal delay-200">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-1">CMA (USA) – Candidate</h3>
+                            <p class="text-emerald-400 text-sm mb-2 font-medium">Institute of Management Accountants</p>
+                            <p class="text-slate-400 text-xs">Currently pursuing Part 1 (Financial Planning, Performance, and Analytics).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-[#020617] border-t border-white/5 pt-20 pb-10 relative overflow-hidden">
+        <!-- Background element -->
+        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="container max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl font-bold text-white mb-4">Let's Build the Future of FinTech</h2>
+            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Open to opportunities in Credit Risk, AI Automation, and FinTech process optimization.</p>
             
-            <div class="card">
-                <div class="icon-box" style="background: #dbeafe; color: #1e40af;"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Master of Commerce (M.Com)</h3>
-                <p style="font-weight: 600; color: var(--accent-blue);">University of Madras | April 2025</p>
-                <p style="font-size: 0.9rem;">Focus on Advanced Accounting and Financial Management.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                <a href="mailto:prabhuofyoga@gmail.com" class="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank" class="px-8 py-4 bg-transparent text-white border border-slate-600 rounded-lg font-semibold hover:border-blue-400 hover:text-blue-400 transition-colors flex items-center justify-center gap-2">
+                    <i class="fab fa-linkedin"></i> LinkedIn Profile
+                </a>
             </div>
-            
-            <div class="card">
-                <div class="icon-box" style="background: #d1fae5; color: #047857;"><i class="fas fa-chart-line"></i></div>
-                <h3>CMA (USA) – Candidate</h3>
-                <p style="font-weight: 600; color: var(--accent-blue);">Institute of Management Accountants</p>
-                <p style="font-size: 0.9rem;">Currently pursuing Part 1 (Financial Planning, Performance, and Analytics).</p>
+
+            <!-- Personal Mode Toggle -->
+            <div class="p-6 rounded-2xl glass-panel border border-white/10 max-w-md mx-auto mb-16 transform transition hover:scale-105">
+                <p class="text-slate-400 text-sm mb-4">Want to know the human behind the code?</p>
+                <a href="personal.html" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-500/30 text-orange-300 rounded-full text-sm font-medium hover:from-orange-500/30 hover:to-amber-500/30 transition-all">
+                    <i class="fas fa-coffee"></i> Switch to Personal Mode
+                </a>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                <p>&copy; 2026 Yogaprabhu S. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <span class="flex items-center gap-2"><i class="fas fa-phone-alt text-xs"></i> +91 98843 66634</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-xs"></i> Chennai, India</span>
+                </div>
             </div>
         </div>
-
-    </div>
-
-    <footer>
-        <h2 style="color: white; margin-top: 0;">Let's Connect</h2>
-        <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px;">Open to opportunities in Credit Risk, AI Automation, and FinTech.</p>
-        <div style="margin-top: 40px; margin-bottom: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-    <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">Want to know the human behind the code?</p>
-    <a href="personal.html" style="background: rgba(255,255,255,0.1); color: #fff; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.9rem; transition: background 0.3s;">
-        <i class="fas fa-coffee" style="margin-right: 8px; color: #fdba74;"></i> Switch to Personal Mode
-    </a>
-</div>
-        
-        <div style="margin-bottom: 40px;">
-            <a href="mailto:prabhuofyoga@gmail.com" class="btn">
-                <i class="fas fa-envelope"></i> Email Me
-            </a>
-            <a href="https://www.linkedin.com/in/yogaprabhu/" target="_blank" class="btn btn-outline">
-                <i class="fab fa-linkedin"></i> LinkedIn Profile
-            </a>
-        </div>
-        
-        <p style="opacity: 0.6; font-size: 0.9rem;">
-            +91 98843 66634 | Chennai, India<br>
-            &copy; 2026 Yogaprabhu S. All rights reserved.
-        </p>
     </footer>
 
+    <!-- Scripts for Scroll Animations and Navbar effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-fintech-dark/80', 'backdrop-blur-md', 'border-white/10');
+                    navbar.classList.remove('border-transparent');
+                } else {
+                    navbar.classList.remove('bg-fintech-dark/80', 'backdrop-blur-md', 'border-white/10');
+                    navbar.classList.add('border-transparent');
+                }
+            });
+
+            // Intersection Observer for Scroll Animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Unobserve after animation if you only want it to happen once
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
-                </html>
-    
-
-
+</html>
