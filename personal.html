@@ -1,274 +1,541 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogaprabhu | Offline Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Yogaprabhu | OOO Mode</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cozy: {
+                            bg: '#FFFBF0',       // Warm cream background
+                            text: '#451A03',     // Dark coffee text (amber-950)
+                            muted: '#78350F',    // Muted brown text (amber-900)
+                            accent: '#EA580C',   // Orange accent (orange-600)
+                            card: '#FFFFFF',     // Pure white for cards
+                            border: '#FEF3C7',   // Light warm border (amber-100)
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(69, 26, 3, 0.08)',
+                        'float': '0 20px 40px -10px rgba(234, 88, 12, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-warm: #fffbeb; /* Creamy White */
-            --text-coffee: #451a03; /* Dark Coffee */
-            --accent-orange: #ea580c; /* Burnt Orange/Tea Color */
-            --card-bg: #ffffff;
-            --soft-shadow: 0 10px 30px -10px rgba(69, 26, 3, 0.1);
-        }
-
+        /* Dot Pattern Background */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-warm);
-            color: var(--text-coffee);
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
+            background-color: #FFFBF0;
+            background-image: radial-gradient(#E6DFD3 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: #451A03;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Poppins', sans-serif;
-        }
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FFFBF0; }
+        ::-webkit-scrollbar-thumb { background: #FDBA74; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #EA580C; }
 
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px 20px;
-            background: linear-gradient(to bottom, #fff7ed, #fffbeb);
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            color: var(--accent-orange);
-            font-weight: 800;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
 
-        .tagline {
-            font-size: 1.3rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
+        /* Card Hover */
+        .cozy-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* GRID LAYOUTS */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
-        }
-
-        /* CARDS */
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--soft-shadow);
-            border: 2px solid transparent;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .card:hover {
+        .cozy-card:hover {
             transform: translateY(-5px);
-            border-color: #fed7aa;
+            box-shadow: 0 15px 35px -5px rgba(69, 26, 3, 0.1);
         }
 
-        .section-header {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        /* Progress Bar Animation */
+        .progress-bar {
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 0;
         }
-
-        .section-header i { color: var(--accent-orange); }
-
-        /* TECH SPECS STYLE */
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed #fed7aa;
-            padding: 10px 0;
-            font-size: 0.95rem;
+        
+        /* Polaroid Style for Photos */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
         }
-        .spec-label { font-weight: 600; color: var(--accent-orange); }
-
-        /* ANIME TAGS */
-        .anime-tag {
-            display: inline-block;
-            background: #ffedd5;
-            color: var(--accent-orange);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin: 5px 2px;
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 10;
         }
-
-        /* GALLERY */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .gallery-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            background-color: #ddd; /* Placeholder color */
-        }
-
-        /* BUTTONS */
-        .btn-social {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 5px;
-            transition: all 0.2s;
-        }
-
-        .btn-insta { background: #E1306C; color: white; }
-        .btn-wa { background: #25D366; color: white; }
-        .btn-back { background: var(--text-coffee); color: white; }
-
-        .btn-social:hover { opacity: 0.9; transform: scale(1.05); }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid #fed7aa;
-            margin-top: 40px;
-        }
-
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-orange-200 selection:text-orange-900">
 
-    <div class="hero">
-        <h1>Yogaprabhu</h1>
-        <div class="tagline">
-            Powered by <strong>Strong Ginger Tea</strong> & Error Logs. <br>
-            Currently running in Offline Mode. 🔋
+    <!-- Top Bar -->
+    <nav class="absolute top-0 w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center">
+        <div class="font-mono text-xs md:text-sm font-bold text-orange-600 bg-orange-100 px-4 py-2 rounded-full border border-orange-200 shadow-sm flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> OOO Mode Engaged
         </div>
-        
-        <div style="margin-top: 30px;">
-            <a href="https://www.instagram.com/prabhuofyoga" target="_blank" class="btn-social btn-insta">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="https://wa.me/+919884366634" target="_blank" class="btn-social btn-wa">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-        </div>
-    </div>
+        <a href="index.html" class="flex items-center gap-2 text-sm font-semibold text-cozy-text bg-white px-5 py-2.5 rounded-full border border-cozy-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <i class="fas fa-briefcase text-orange-500"></i> Back to Spreadsheets
+        </a>
+    </nav>
 
-    <div class="container">
+    <!-- Hero Section -->
+    <header class="relative min-h-[70vh] flex items-center pt-24 pb-16 justify-center text-center overflow-hidden">
+        <!-- Soft background blobs -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] bg-orange-100/50 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute top-10 right-10 w-64 h-64 bg-amber-100/60 rounded-full blur-2xl -z-10"></div>
 
-        <div class="section-header"><i class="fas fa-mug-hot"></i> Fuel & Sustenance</div>
-        <div class="grid-2">
-            <div class="card">
-                <h3>The Tea Ritual ☕</h3>
-                <p>I don't just drink tea; I subscribe to it daily. My default setting is <strong>Strong Ginger Tea</strong>.</p>
-                <ul style="padding-left: 20px; color: #78350f;">
-                    <li><strong>Home Base:</strong> Mom's Tea (Unbeatable).</li>
-                    <li><strong>The Chennai Classic:</strong> Buhari Tea + Signature Chicken 65.</li>
-                    <li><strong>Frequency:</strong> All day, every day.</li>
-                </ul>
+        <div class="container max-w-3xl mx-auto px-6 relative z-10">
+            <div class="reveal">
+                <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-cozy-text mb-6 tracking-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">Yogaprabhu</span>
+                </h1>
             </div>
-            <div class="card">
-                <h3>Kitchen Experiments 🍳</h3>
-                <p>Status: <span style="background: #fef3c7; padding: 2px 8px; border-radius: 5px; font-weight: bold;">Masterchef in Progress</span></p>
-                <p>Currently specializing in Biryani, Fried Rice, and Noodles. <br><small>(Survival rate is high, flavor is... improving.)</small></p>
-            </div>
-        </div>
-
-        <div class="section-header"><i class="fas fa-gamepad"></i> The Arsenal</div>
-        <div class="grid-3">
-            <div class="card">
-                <i class="fas fa-laptop-code" style="font-size: 2rem; color: var(--accent-orange); margin-bottom: 15px;"></i>
-                <h3>The Workstation</h3>
-                <div class="spec-item"><span class="spec-label">Laptop</span> <span>Lenovo LOQ 15IRX9</span></div>
-                <div class="spec-item"><span class="spec-label">Mobile</span> <span>Redmi Note 12 Pro+ (12GB)</span></div>
-                <div class="spec-item"><span class="spec-label">Audio</span> <span>OnePlus Bullets Z2 ANC</span></div>
-            </div>
-            <div class="card">
-                <i class="fas fa-motorcycle" style="font-size: 2rem; color: var(--accent-orange); margin-bottom: 15px;"></i>
-                <h3>The Getaway</h3>
-                <div class="spec-item"><span class="spec-label">Model</span> <span>Dio Dx BSVI</span></div>
-                <div class="spec-item"><span class="spec-label">Color</span> <span>Matte Black</span></div>
-                <div class="spec-item"><span class="spec-label">Usage</span> <span>Exploring Chennai</span></div>
-            </div>
-            <div class="card">
-                <i class="fas fa-ghost" style="font-size: 2rem; color: var(--accent-orange); margin-bottom: 15px;"></i>
-                <h3>Gaming</h3>
-                <p>PC Gamer. I live for good <strong>Story Games</strong>.</p>
-                <p style="font-size: 0.9rem; opacity: 0.8;">Currently finding time between deployments to finish campaigns.</p>
-            </div>
-        </div>
-
-        <div class="section-header"><i class="fas fa-tv"></i> Watch & Listen</div>
-        <div class="grid-2">
-            <div class="card">
-                <h3>Anime Nerd 🎌</h3>
-                <p>If you need recommendations, start here:</p>
-                <div style="margin-top: 10px;">
-                    <span class="anime-tag">One Piece</span>
-                    <span class="anime-tag">Naruto</span>
-                    <span class="anime-tag">Demon Slayer</span>
-                </div>
-                <p style="margin-top: 15px; font-size: 0.9rem;">
-                    <strong>Currently Watching:</strong> Jujutsu Kaisen (JJK) <br>
-                    <strong>Movie Vibe:</strong> Sci-Fi Buff & Cinema Lover.
+            
+            <div class="reveal delay-100">
+                <p class="text-xl md:text-2xl text-cozy-muted font-medium mb-8 leading-relaxed">
+                    Accountant by day. Vibe-coder by night. <br>
+                    I mostly just write macros so I have more free time to watch movies and drink <strong class="text-orange-600">Strong Ginger Tea</strong>. 🍵
                 </p>
             </div>
-            <div class="card">
-                <h3>The Playlist 🎧</h3>
-                <p>My coding and chilling soundtrack is strictly <strong>Tamil Melodies</strong>.</p>
-                <p style="font-size: 0.9rem;">From Ilaiyaraaja gold to modern hits.</p>
-                <div style="margin-top: 10px;">
-                    <span class="anime-tag" style="background:#e0f2fe; color:#0369a1;">HipHop Tamizha</span>
-                    <span class="anime-tag" style="background:#e0f2fe; color:#0369a1;">ARR</span>
-                    <span class="anime-tag" style="background:#e0f2fe; color:#0369a1;">Anirudh</span>
-                </div>
+
+            <div class="reveal delay-200 flex flex-wrap justify-center gap-4">
+                <a href="https://www.instagram.com/prabhuofyoga" target="_blank" class="px-8 py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 hover:-translate-y-1">
+                    <i class="fab fa-instagram text-xl"></i> Instagram
+                </a>
+                <a href="https://wa.me/+919884366634" target="_blank" class="px-8 py-3.5 bg-[#25D366] text-white rounded-full font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 hover:-translate-y-1">
+                    <i class="fab fa-whatsapp text-xl"></i> Send Tea Recs
+                </a>
             </div>
         </div>
+    </header>
 
-        <div class="section-header"><i class="fas fa-camera-retro"></i> Life in Pixels</div>
-        <div class="gallery-grid">
-            <img src="tea.jpg" alt="Buhari Tea" class="gallery-img">
-            <img src="setup.jpg" alt="My Setup" class="gallery-img">
-            <img src="bike.jpg" alt="My Bike" class="gallery-img">
-            <img src="cook.jpg" alt="My Dish" class="gallery-img">
-        </div>
+    <!-- Main Content Container -->
+    <main class="relative z-20 pb-20">
 
-        <footer>
-            <h3>Thanks for stopping by!</h3>
-            <p style="margin-bottom: 30px;">"Don't be sorry. Be Better."</p>
+        <!-- Real-Life Skill Tree -->
+        <section class="container max-w-5xl mx-auto px-6 mb-24">
+            <div class="mb-10 text-center reveal">
+                <h2 class="font-heading text-3xl font-bold text-cozy-text mb-2">
+                    <i class="fas fa-star text-amber-500 mr-2"></i> The Real Resume
+                </h2>
+                <p class="text-cozy-muted">The stats that actually matter, but finance won't let me list.</p>
+            </div>
             
-            <a href="index.html" class="btn-social btn-back">
-                <i class="fas fa-briefcase"></i> Back to Professional Mode
-            </a>
-        </footer>
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-soft border border-cozy-border reveal cozy-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+                    
+                    <!-- Skill 1 -->
+                    <div>
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="font-semibold text-cozy-text"><i class="fas fa-file-excel text-green-600 mr-2"></i>Writing Macros to Avoid Manual Labor</span>
+                            <span class="text-green-600 font-mono font-bold">99%</span>
+                        </div>
+                        <div class="w-full bg-stone-100 rounded-full h-3 overflow-hidden">
+                            <div class="bg-gradient-to-r from-green-400 to-green-500 h-3 rounded-full progress-bar" data-width="99%"></div>
+                        </div>
+                        <p class="text-xs text-stone-500 mt-2">Why spend 5 minutes doing it when I can spend 5 hours automating it?</p>
+                    </div>
 
-    </div>
+                    <!-- Skill 2 -->
+                    <div>
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="font-semibold text-cozy-text"><i class="fas fa-film text-purple-600 mr-2"></i>Spotting Plot Holes in Sci-Fi Movies</span>
+                            <span class="text-purple-600 font-mono font-bold">100%</span>
+                        </div>
+                        <div class="w-full bg-stone-100 rounded-full h-3 overflow-hidden">
+                            <div class="bg-gradient-to-r from-purple-400 to-purple-500 h-3 rounded-full progress-bar" data-width="100%"></div>
+                        </div>
+                        <p class="text-xs text-stone-500 mt-2">I'm really fun at parties, I swear.</p>
+                    </div>
 
+                    <!-- Skill 3 -->
+                    <div>
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="font-semibold text-cozy-text"><i class="fas fa-bed text-blue-500 mr-2"></i>Snooze Button Endurance</span>
+                            <span class="text-blue-500 font-mono font-bold">85%</span>
+                        </div>
+                        <div class="w-full bg-stone-100 rounded-full h-3 overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-500 h-3 rounded-full progress-bar" data-width="85%"></div>
+                        </div>
+                        <p class="text-xs text-stone-500 mt-2">I have 7 alarms set. I respect none of them.</p>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div>
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="font-semibold text-cozy-text"><i class="fas fa-balance-scale text-orange-500 mr-2"></i>Waking up on the first alarm</span>
+                            <span class="text-orange-500 font-mono font-bold">404</span>
+                        </div>
+                        <div class="w-full bg-stone-100 rounded-full h-3 overflow-hidden">
+                            <div class="bg-orange-200 h-3 rounded-full progress-bar bg-[length:20px_20px] animate-[pulse_2s_infinite]" style="background-image: linear-gradient(45deg,rgba(255,255,255,.5) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.5) 50%,rgba(255,255,255,.5) 75%,transparent 75%,transparent);" data-width="40%"></div>
+                        </div>
+                        <p class="text-xs text-stone-500 mt-2">Error: Willpower not found.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Survival & Sustenance -->
+        <section class="container max-w-5xl mx-auto px-6 mb-24">
+            <div class="mb-10 text-center reveal">
+                <h2 class="font-heading text-3xl font-bold text-cozy-text mb-2">
+                    <i class="fas fa-mug-hot text-orange-500 mr-2"></i> Survival & Sustenance
+                </h2>
+                <p class="text-cozy-muted">Because nobody writes good code (or does good accounting) hungry.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 text-orange-50 text-9xl -z-0">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-cozy-text mb-4 relative z-10">The Tea Ritual ☕</h3>
+                    <p class="text-cozy-muted mb-6 relative z-10">I don't just drink tea; I respect it. My default setting is <strong class="text-orange-600 bg-orange-100 px-2 py-0.5 rounded">Strong Ginger Tea</strong>.</p>
+                    <ul class="space-y-4 text-sm relative z-10">
+                        <li class="flex items-start gap-4 p-4 bg-orange-50/50 rounded-xl border border-orange-100">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center shrink-0">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div>
+                                <strong class="text-cozy-text block text-base">Home Base</strong> 
+                                <span class="text-cozy-muted">Mom's Tea. Simply unbeatable. The gold standard.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 p-4 bg-orange-50/50 rounded-xl border border-orange-100">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center shrink-0">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div>
+                                <strong class="text-cozy-text block text-base">The Chennai Classic</strong> 
+                                <span class="text-cozy-muted">Buhari Tea + Signature Chicken 65. The ultimate comfort combo.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal delay-100 relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 text-orange-50 text-9xl -z-0">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-cozy-text mb-4 relative z-10">Culinary Chaos 🍳</h3>
+                    <div class="mb-6 relative z-10">
+                        <span class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider inline-block">
+                            <i class="fas fa-utensils mr-1"></i> Masterchef (In Progress)
+                        </span>
+                    </div>
+                    <p class="text-cozy-muted leading-relaxed relative z-10">
+                        Currently specializing in the holy trinity of bachelor food: <strong class="text-amber-600">Biryani, Fried Rice, and Noodles</strong>. 
+                    </p>
+                    <div class="mt-8 bg-amber-50 p-4 rounded-xl border-l-4 border-amber-400 text-sm relative z-10">
+                        <p class="text-amber-900"><strong class="font-bold">Current Status:</strong> Survival rate is high. The flavor profile is... improving with every patch update.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Comfort Zone -->
+        <section class="container max-w-5xl mx-auto px-6 mb-24">
+            <div class="mb-10 text-center reveal">
+                <h2 class="font-heading text-3xl font-bold text-cozy-text mb-2">
+                    <i class="fas fa-couch text-blue-500 mr-2"></i> The Comfort Zone
+                </h2>
+                <p class="text-cozy-muted">Where the vibes happen.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Workstation -->
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-cozy-text mb-4">The Setup</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between border-b border-dashed border-stone-200 pb-2">
+                            <span class="text-blue-600 text-sm font-semibold">The Workhorse</span>
+                            <span class="text-cozy-text text-sm font-medium">Lenovo LOQ</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-stone-200 pb-2">
+                            <span class="text-blue-600 text-sm font-semibold">Doomscroller</span>
+                            <span class="text-cozy-text text-sm font-medium">Redmi Note 12 Pro+</span>
+                        </div>
+                        <div class="flex justify-between pb-2">
+                            <span class="text-blue-600 text-sm font-semibold">Noise Canceller</span>
+                            <span class="text-cozy-text text-sm font-medium">OnePlus Bullets Z2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Getaway -->
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal delay-100">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-cozy-text mb-4">The Getaway</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between border-b border-dashed border-stone-200 pb-2">
+                            <span class="text-amber-600 text-sm font-semibold">Vessel</span>
+                            <span class="text-cozy-text text-sm font-medium">Dio Dx BSVI</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-stone-200 pb-2">
+                            <span class="text-amber-600 text-sm font-semibold">Aesthetic</span>
+                            <span class="text-cozy-text text-sm font-medium">Matte Black</span>
+                        </div>
+                        <div class="flex justify-between pb-2">
+                            <span class="text-amber-600 text-sm font-semibold">Purpose</span>
+                            <span class="text-cozy-text text-sm font-medium">Late night food runs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gaming -->
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal delay-200">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-cozy-text mb-4">Interactive Movies</h3>
+                    <p class="text-cozy-muted mb-4 text-sm leading-relaxed">I'm a PC Gamer, but I mostly live for <strong class="text-purple-600">Story Games</strong> where I can just sit back and enjoy the narrative.</p>
+                    <div class="bg-stone-50 rounded-xl p-3 border border-stone-100">
+                        <p class="text-stone-500 text-xs italic">
+                            *Finding time to finish a campaign is the real boss fight.*
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watch & Listen -->
+        <section class="container max-w-5xl mx-auto px-6 mb-24">
+            <div class="mb-10 text-center reveal">
+                <h2 class="font-heading text-3xl font-bold text-cozy-text mb-2">
+                    <i class="fas fa-ticket text-pink-500 mr-2"></i> The Watchlist
+                </h2>
+                <p class="text-cozy-muted">I am an accounting professional by title, but an Anime Nerd & Movie Buff by heart.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Anime / Manhwa -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal">
+                    <h3 class="font-heading text-2xl font-bold text-cozy-text mb-4">Weeb Status: Certified 🎌</h3>
+                    <p class="text-cozy-muted mb-4 text-sm">If you need recommendations, start with the classics:</p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-4 py-1.5 bg-red-50 text-red-600 rounded-full text-xs font-bold tracking-wider border border-red-100">ONE PIECE</span>
+                        <span class="px-4 py-1.5 bg-orange-50 text-orange-600 rounded-full text-xs font-bold tracking-wider border border-orange-100">NARUTO</span>
+                        <span class="px-4 py-1.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold tracking-wider border border-emerald-100">DEMON SLAYER</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-stone-50 rounded-xl border border-stone-100">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 animate-pulse shrink-0"></div>
+                            <div>
+                                <p class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">Currently Reading (Manhwa)</p>
+                                <p class="text-sm font-semibold text-cozy-text">Omniscient Reader's Viewpoint</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 p-4 bg-stone-50 rounded-xl border border-stone-100">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-green-500 shrink-0"></div>
+                            <div>
+                                <p class="text-xs font-bold text-green-600 uppercase tracking-wider mb-1">Currently Watching</p>
+                                <p class="text-sm font-semibold text-cozy-text">Jujutsu Kaisen (JJK)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-stone-50 rounded-xl border border-stone-100">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-purple-500 shrink-0"></div>
+                            <div>
+                                <p class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-1">Movie Vibe</p>
+                                <p class="text-sm font-semibold text-cozy-text">Massive Sci-Fi Buff & Pretentious Cinema Lover.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playlist -->
+                <div class="bg-white p-8 rounded-3xl shadow-soft border border-cozy-border cozy-card reveal delay-100">
+                    <h3 class="font-heading text-2xl font-bold text-cozy-text mb-4">The Soundtrack 🎧</h3>
+                    <p class="text-cozy-muted mb-2">My chilling and coding soundtrack is strictly <strong class="text-pink-500">Tamil Melodies</strong>.</p>
+                    <p class="text-stone-500 text-sm mb-8 italic">From Ilaiyaraaja gold to modern hits.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-stone-50 transition-colors group cursor-pointer border border-transparent hover:border-stone-100">
+                            <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm">
+                                <i class="fas fa-play text-xs ml-1"></i>
+                            </div>
+                            <div>
+                                <span class="text-cozy-text font-bold block">HipHop Tamizha</span>
+                                <span class="text-stone-500 text-xs">For matching the movie protagonist energy.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-stone-50 transition-colors group cursor-pointer border border-transparent hover:border-stone-100">
+                            <div class="w-12 h-12 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all shadow-sm">
+                                <i class="fas fa-play text-xs ml-1"></i>
+                            </div>
+                            <div>
+                                <span class="text-cozy-text font-bold block">A.R. Rahman</span>
+                                <span class="text-stone-500 text-xs">For late-night deep thoughts (and Excel deep dives).</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-3 rounded-xl hover:bg-stone-50 transition-colors group cursor-pointer border border-transparent hover:border-stone-100">
+                            <div class="w-12 h-12 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-white transition-all shadow-sm">
+                                <i class="fas fa-play text-xs ml-1"></i>
+                            </div>
+                            <div>
+                                <span class="text-cozy-text font-bold block">Anirudh</span>
+                                <span class="text-stone-500 text-xs">For when the caffeine finally hits.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life in Pixels (Polaroid Style) -->
+        <section class="container max-w-5xl mx-auto px-6 mb-10">
+            <div class="mb-12 text-center reveal">
+                <h2 class="font-heading text-3xl font-bold text-cozy-text mb-2">
+                    <i class="fas fa-image text-emerald-500 mr-2"></i> Photo Dump
+                </h2>
+                <p class="text-cozy-muted">Evidence that I sometimes leave my desk.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
+                <!-- Polaroid 1 -->
+                <div class="polaroid reveal rotate-[-2deg]">
+                    <div class="aspect-square bg-stone-200 overflow-hidden mb-3 relative">
+                        <img src="tea.jpg" alt="Buhari Tea" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <span class="font-heading font-bold text-sm text-cozy-text block">Buhari Tea</span>
+                        <span class="text-stone-500 text-xs italic">The nectar of the gods</span>
+                    </div>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="polaroid reveal delay-100 rotate-[3deg] mt-4 md:mt-0">
+                    <div class="aspect-square bg-stone-200 overflow-hidden mb-3 relative">
+                        <img src="setup.jpg" alt="My Setup" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <span class="font-heading font-bold text-sm text-cozy-text block">The Setup</span>
+                        <span class="text-stone-500 text-xs italic">Cozy mode activated</span>
+                    </div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="polaroid reveal delay-200 rotate-[-1deg] mt-4 md:mt-0">
+                    <div class="aspect-square bg-stone-200 overflow-hidden mb-3 relative">
+                        <img src="bike.jpg" alt="My Bike" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <span class="font-heading font-bold text-sm text-cozy-text block">Dio Dx</span>
+                        <span class="text-stone-500 text-xs italic">Ready for tea runs</span>
+                    </div>
+                </div>
+
+                <!-- Polaroid 4 -->
+                <div class="polaroid reveal delay-300 rotate-[4deg] mt-8 md:mt-4">
+                    <div class="aspect-square bg-stone-200 overflow-hidden mb-3 relative">
+                        <img src="cook.jpg" alt="My Dish" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center">
+                        <span class="font-heading font-bold text-sm text-cozy-text block">Chef Mode</span>
+                        <span class="text-stone-500 text-xs italic">Gordon Ramsay who?</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-stone-200 bg-white pt-16 pb-12 text-center mt-20">
+        <div class="container mx-auto px-6">
+            <h3 class="font-heading text-3xl font-bold text-cozy-text mb-2">Thanks for surviving the tour!</h3>
+            
+            <!-- Quote Box -->
+            <div class="inline-block relative my-10 p-8 rounded-2xl bg-orange-50/50 border border-orange-100 max-w-2xl shadow-sm">
+                <i class="fas fa-quote-left text-orange-200 text-5xl absolute -top-4 -left-4"></i>
+                <p class="font-heading text-2xl font-bold italic text-orange-900 mb-2">"Don't be sorry. Be Better."</p>
+                <p class="text-sm font-medium text-orange-700/70 uppercase tracking-widest">- Kratos</p>
+                <i class="fas fa-quote-right text-orange-200 text-5xl absolute -bottom-4 -right-4"></i>
+            </div>
+            
+            <div class="mt-4">
+                <a href="index.html" class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-cozy-text px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+                    <i class="fas fa-briefcase text-orange-400"></i> Put the Suit Back On
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Scroll & Progress Bar Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Trigger Progress bars if they exist in this element
+                        const progressBars = entry.target.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 300); // slight delay for visual effect
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
