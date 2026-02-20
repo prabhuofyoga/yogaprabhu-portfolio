@@ -3,313 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Card - Yogaprabhu S.</title>
-    <!-- Fonts: Inter for clean, modern FinTech look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Icons -->
+    <title>Yogaprabhu | Print-Ready Business Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-bg: #0f172a; /* Deep Navy Blue */
-            --accent-blue: #3b82f6; /* Electric Blue */
-            --accent-cyan: #06b6d4; /* Cyan for tech details */
-            --text-white: #f8fafc;
-            --text-silver: #94a3b8;
-            
-            /* Card Dimensions */
-            --card-width: 3.5in;
-            --card-height: 2in;
-            --scale: 2; /* Scaling up for screen viewing */
+            --fintech-dark: #020617; /* Deepest Navy */
+            --fintech-panel: #0f172a; /* Slate 900 */
+            --brand-blue: #3b82f6;
+            --brand-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
+        /* Presentation Wrapper (Just for viewing on screen) */
         body {
             background-color: #e2e8f0;
-            font-family: 'Inter', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            gap: 30px;
+            font-family: 'Inter', sans-serif;
+            gap: 40px;
             padding: 40px;
         }
 
-        .section-label {
-            margin-bottom: 10px;
-            font-size: 0.85rem;
-            color: #64748b;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .instruction-bar {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
         }
 
-        /* Card Container */
-        .card-wrapper {
+        /* --- ACTUAL CARD SPECIFICATIONS --- */
+        /* Standard US Business Card: 3.5in x 2.0in */
+        /* Note: Added 0.125in bleed for printing purposes if needed, but keeping exact for visual */
+        
+        .card-container {
+            width: 3.5in;
+            height: 2in;
+            background: var(--fintech-dark);
             position: relative;
-            width: calc(var(--card-width) * var(--scale));
-            height: calc(var(--card-height) * var(--scale));
-            background: var(--primary-bg);
-            /* Subtle texture gradient */
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            border-radius: 6px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
             display: flex;
-            flex-direction: column;
+            box-sizing: border-box;
+            /* Print scaling fix */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        /* --- SHARED STYLES --- */
-        /* Tech Grid Overlay */
-        .tech-grid {
+        /* --- CARD FRONT --- */
+        .card-front {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0.2in;
+        }
+
+        /* Subtle glowing background effect */
+        .card-front::before {
+            content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
-            pointer-events: none;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
             z-index: 0;
         }
 
-        /* --- FRONT SIDE --- */
-        .front-side {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 100%;
-            z-index: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
         .logo-container {
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4));
+            width: 0.5in;
+            height: 0.5in;
+            margin-bottom: 0.1in;
+            position: relative;
+            z-index: 10;
         }
 
-        .name {
-            color: var(--text-white);
-            font-size: 26px;
-            font-weight: 700;
+        .name-front {
+            font-size: 16pt;
+            font-weight: 800;
+            color: var(--text-main);
             letter-spacing: -0.5px;
-            margin-bottom: 4px;
+            margin: 0 0 2px 0;
+            position: relative;
+            z-index: 10;
         }
 
-        .title {
-            color: var(--accent-blue);
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 35px;
-        }
-
-        .tagline {
-            color: var(--text-silver);
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
-            position: absolute;
-            bottom: 30px;
-        }
-
-        /* --- BACK SIDE --- */
-        .back-side {
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            width: 100%;
-            z-index: 1;
-        }
-
-        .col-left {
-            flex: 1.3;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-left: 50px;
-        }
-
-        .contact-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-            color: var(--text-white);
-        }
-
-        .icon-box {
-            width: 24px;
-            display: flex;
-            justify-content: center;
-            margin-right: 12px;
-        }
-
-        .icon-box i {
-            color: var(--accent-cyan);
-            font-size: 14px;
-        }
-
-        .contact-text {
-            font-size: 11px;
+        .title-front {
+            font-size: 6.5pt;
+            color: var(--brand-cyan);
             font-weight: 500;
-            letter-spacing: 0.2px;
-        }
-
-        .col-right {
-            flex: 0.7;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding-right: 30px;
-            border-left: 1px solid rgba(255,255,255,0.05);
-            background: rgba(0,0,0,0.1);
-        }
-
-        .qr-wrapper {
-            padding: 6px;
-            border: 1px solid var(--accent-cyan);
-            border-radius: 4px;
-            background: #fff;
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-            margin-bottom: 10px;
-        }
-
-        .qr-code {
-            display: block;
-            width: 75px;
-            height: 75px;
-        }
-
-        .scan-text {
-            color: var(--text-silver);
-            font-size: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 600;
+            position: relative;
+            z-index: 10;
         }
 
-        /* SVG Animation */
-        @keyframes pulse {
-            0% { opacity: 0.6; r: 3; }
-            50% { opacity: 1; r: 4.5; }
-            100% { opacity: 0.6; r: 3; }
+        /* --- CARD BACK --- */
+        .card-back {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.25in;
+            background: linear-gradient(135deg, var(--fintech-dark) 0%, var(--fintech-panel) 100%);
         }
-        .pulse-node {
-            animation: pulse 3s infinite ease-in-out;
-        }
-@media print {
-    /* 1. Force Background Colors */
-    body, .card, .front, .back {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        background-color: #0f172a !important; /* Forces the Navy Blue */
-    }
 
-    /* 2. Remove Default Page Margins */
-    @page {
-        margin: 0;
-        size: auto;
-    }
-
-    /* 3. Hide any elements you don't want printed (like a 'Download' button) */
-    .no-print {
-        display: none;
-    }
+        .back-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 65%;
         }
-        
+
+        .back-right {
+            width: 30%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.08in;
+            font-size: 6.5pt;
+            color: var(--text-muted);
+        }
+
+        .contact-icon {
+            color: var(--brand-blue);
+            width: 0.15in;
+            font-size: 8pt;
+            margin-right: 0.05in;
+        }
+
+        .name-back {
+            font-size: 11pt;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0 0 1px 0;
+        }
+
+        .title-back {
+            font-size: 5.5pt;
+            color: var(--brand-cyan);
+            margin-bottom: 0.15in;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* QR Code Placeholder */
+        .qr-code {
+            width: 0.75in;
+            height: 0.75in;
+            background: white;
+            padding: 0.04in;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Print Specifics */
+        @media print {
+            body { background: white; padding: 0; }
+            .instruction-bar { display: none; }
+            .card-container {
+                box-shadow: none;
+                margin-bottom: 0.5in;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- FRONT SIDE -->
+    <div class="instruction-bar">
+        <h2 style="margin-top:0; color:#0f172a;">Your Physical Business Card Design</h2>
+        <p style="color:#475569; font-size: 0.9rem; margin-bottom: 0;">
+            This layout is exactly <strong>3.5" x 2.0"</strong> (Standard US Size). <br>
+            You can take a high-res screenshot of these, save as PDF, or recreate this exact aesthetic in Canva using the colors and SVG logo below!
+        </p>
+    </div>
+
+    <!-- FRONT OF CARD -->
     <div>
-        <div class="section-label">Front Side</div>
-        <div class="card-wrapper">
-            <div class="tech-grid"></div>
+        <h3 style="color:#64748b; text-align:center; font-size: 0.8rem; text-transform:uppercase; letter-spacing: 2px;">Front Side</h3>
+        <div class="card-container card-front">
             
-            <div class="front-side">
-                <div class="logo-container">
-                    <!-- CUSTOM DESIGNED SVG LOGO -->
-                    <svg width="70" height="80" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="shieldGrad" x1="0" y1="0" x2="100" y2="100">
-                                <stop offset="0%" stop-color="#3b82f6" />
-                                <stop offset="100%" stop-color="#1d4ed8" />
-                            </linearGradient>
-                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-                        
-                        <!-- Left Side: Solid Shield (Stability) -->
-                        <path d="M50 15 L20 25 V50 C20 75 50 95 50 95 V15 Z" fill="url(#shieldGrad)" />
-                        
-                        <!-- Right Side: Circuit Lines (AI Tech) -->
-                        <!-- Outline of shield right side -->
-                        <path d="M50 15 L80 25 V50 C80 75 50 95 50 95" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        
-                        <!-- Internal Circuits -->
-                        <path d="M80 35 H65 L58 42" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="80" cy="35" r="2.5" fill="#06b6d4" />
-                        
-                        <path d="M80 60 H70 L60 50" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="80" cy="60" r="2.5" fill="#06b6d4" />
-
-                        <!-- Central Fusion Node -->
-                        <circle cx="50" cy="50" r="6" fill="#ffffff" filter="url(#glow)" />
-                        <circle cx="50" cy="50" r="3" fill="#06b6d4" class="pulse-node" />
-                    </svg>
-                </div>
-
-                <div class="name">Yogaprabhu S.</div>
-                <div class="title">Commercial Credit Underwriter | Agentic AI Specialist</div>
-                <div class="tagline">Bridging Financial Analysis & Process Automation</div>
+            <!-- CUSTOM SVG LOGO -->
+            <div class="logo-container">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer Hexagon -->
+                    <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" stroke="rgba(59,130,246,0.2)" stroke-width="2" fill="rgba(15,23,42,0.8)"/>
+                    <path d="M50 12 L84 32 L84 68 L50 88 L16 68 L16 32 Z" stroke="url(#logo-grad)" stroke-width="4"/>
+                    
+                    <!-- Stylized 'Y' -->
+                    <!-- Left Arm (Stable/Finance) -->
+                    <path d="M30 35 L50 55 L50 78" stroke="#3b82f6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Right Arm (AI/Node) -->
+                    <path d="M70 35 L50 55" stroke="#06b6d4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Tech Node Dot -->
+                    <circle cx="70" cy="35" r="5" fill="#06b6d4" shadow="0 0 10px #06b6d4"/>
+                    
+                    <defs>
+                        <linearGradient id="logo-grad" x1="16" y1="12" x2="84" y2="88" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#3b82f6"/>
+                            <stop offset="1" stop-color="#06b6d4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
+
+            <h1 class="name-front">Yogaprabhu S.</h1>
+            <div class="title-front">Credit Underwriter &bull; Agentic AI</div>
         </div>
     </div>
 
-    <!-- BACK SIDE -->
+    <!-- BACK OF CARD -->
     <div>
-        <div class="section-label">Back Side</div>
-        <div class="card-wrapper">
-            <div class="tech-grid"></div>
+        <h3 style="color:#64748b; text-align:center; font-size: 0.8rem; text-transform:uppercase; letter-spacing: 2px;">Back Side</h3>
+        <div class="card-container card-back">
             
-            <div class="back-side">
-                <div class="col-left">
-                    <div class="contact-row">
-                        <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
-                        <span class="contact-text">+91 98843 66634</span>
-                    </div>
-                    <div class="contact-row">
-                        <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
-                        <span class="contact-text">prabhuofyoga@gmail.com</span>
-                    </div>
-                    <div class="contact-row">
-                        <div class="icon-box"><i class="fa-brands fa-linkedin-in"></i></div>
-                        <span class="contact-text">linkedin.com/in/yogaprabhu</span>
-                    </div>
+            <div class="back-left">
+                <h2 class="name-back">Yogaprabhu S.</h2>
+                <div class="title-back">Commercial Credit & AI Specialist</div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    prabhuofyoga@gmail.com
                 </div>
-
-                <div class="col-right">
-                    <div class="qr-wrapper">
-                        <!-- High Contrast QR for Navy Background -->
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://prabhuofyoga.github.io/yogaprabhu-portfolio/card.html&bgcolor=ffffff&color=000000&margin=0" alt="Portfolio QR" class="qr-code">
-                    </div>
-                    <span class="scan-text">Scan for Portfolio</span>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    +91 98843 66634
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin-in contact-icon"></i>
+                    in/yogaprabhu
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe contact-icon"></i>
+                    prabhuofyoga.github.io
                 </div>
             </div>
+
+            <div class="back-right">
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://prabhuofyoga.github.io/yogaprabhu-portfolio/card.html" alt="QR Code to Digital Card" />
+                </div>
+            </div>
+
         </div>
     </div>
 
