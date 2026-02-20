@@ -4,155 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yogaprabhu S. | Digital Card</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration matching your Portfolio -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #0f172a; /* Deep Navy */
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
+            background-color: #020617; /* Deep slate-950 */
+            overflow: hidden; /* Prevents scrolling on the card page */
         }
-
-        /* Animated Background */
-        .bg-circle {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(15,23,42,0) 70%);
-            animation: float 10s infinite ease-in-out;
-            z-index: 0;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, -20px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        /* The Card */
-        .card {
-            position: relative;
-            z-index: 10;
-            width: 350px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            color: white;
+        
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            background: #3b82f6;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            margin: 0 0 5px 0;
-            font-weight: 700;
-        }
-
-        .title {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .divider {
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 20px 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            color: #cbd5e1;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-item:hover { color: #3b82f6; }
         
-        .contact-item i {
-            width: 30px;
-            color: #3b82f6;
+        /* Subtle Glow Hover Effect */
+        .hover-glow {
+            transition: all 0.3s ease;
         }
-
-        .btn-full {
-            display: block;
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            margin-top: 25px;
-            transition: transform 0.2s, background 0.2s;
+        .hover-glow:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+            transform: translateY(-5px);
         }
-
-        .btn-full:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-
     </style>
 </head>
-<body>
+<body class="text-slate-300 h-screen flex items-center justify-center antialiased selection:bg-blue-500 selection:text-white">
 
-    <div class="bg-circle"></div>
+    <!-- Background Ambient Blobs -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-blue-600/20 rounded-full mix-blend-screen filter blur-[80px] animate-blob"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[350px] h-[350px] bg-cyan-600/20 rounded-full mix-blend-screen filter blur-[80px] animate-blob" style="animation-delay: 2s;"></div>
+    </div>
 
-    <div class="card">
-        <div class="avatar">Y</div>
-        <h1>Yogaprabhu S.</h1>
-        <div class="title">Commercial Credit Underwriter<br>& Agentic AI Specialist</div>
+    <!-- The Card -->
+    <div class="glass-panel relative z-10 w-[90%] max-w-[400px] rounded-[2rem] p-8 text-center hover-glow">
         
-        <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            prabhuofyoga@gmail.com
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            +91 98843 66634
-        </div>
-        <div class="contact-item">
-            <i class="fab fa-linkedin"></i>
-            linkedin.com/in/yogaprabhu
-        </div>
-
-        <div class="divider"></div>
-
-        <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 15px;">
-            View my portfolio & technical tools:
+        <!-- Avatar -->
+        <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-3xl font-bold text-white shadow-[0_0_25px_rgba(59,130,246,0.4)] mb-6 border border-white/20">
+            Y
         </div>
         
-        <a href="https://prabhuofyoga.github.io/yogaprabhu-portfolio/" class="btn-full">
-            <i class="fas fa-external-link-alt"></i> Visit Portfolio Website
+        <!-- Headers -->
+        <h1 class="text-2xl font-extrabold text-white tracking-tight mb-1">Yogaprabhu S.</h1>
+        <div class="text-sm text-blue-400 font-medium mb-8">
+            Commercial Credit Underwriter <br>
+            <span class="text-slate-400 font-normal">& Agentic AI Specialist</span>
+        </div>
+        
+        <!-- Contact Items -->
+        <div class="space-y-3 mb-8 text-left">
+            <!-- Email (Mailto Hyperlink) -->
+            <a href="mailto:prabhuofyoga@gmail.com" class="flex items-center gap-4 text-slate-300 hover:text-white transition-colors p-3 rounded-xl bg-slate-800/30 border border-white/5 hover:bg-slate-800/50 group">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <span class="text-sm font-medium">prabhuofyoga@gmail.com</span>
+            </a>
+            
+            <!-- Add to Contacts (vCard Download) -->
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0D%0AVERSION%3A3.0%0D%0AFN%3AYogaprabhu%20S.%0D%0AN%3AS.%3BYogaprabhu%3B%3B%3B%0D%0ATITLE%3ACommercial%20Credit%20Underwriter%0D%0ATEL%3BTYPE%3DCELL%3A%2B919884366634%0D%0AEMAIL%3Aprabhuofyoga%40gmail.com%0D%0AURL%3Ahttps%3A%2F%2Flinkedin.com%2Fin%2Fyogaprabhu%0D%0AEND%3AVCARD" download="Yogaprabhu_S.vcf" class="flex items-center gap-4 text-slate-300 hover:text-white transition-colors p-3 rounded-xl bg-slate-800/30 border border-white/5 hover:bg-slate-800/50 group">
+                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-medium text-white group-hover:text-white">Add to Contacts</span>
+                    <span class="text-xs text-slate-400 group-hover:text-slate-200">+91 98843 66634</span>
+                </div>
+            </a>
+            
+            <!-- LinkedIn (External Hyperlink) -->
+            <a href="https://linkedin.com/in/yogaprabhu" target="_blank" class="flex items-center gap-4 text-slate-300 hover:text-white transition-colors p-3 rounded-xl bg-slate-800/30 border border-white/5 hover:bg-slate-800/50 group">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <span class="text-sm font-medium">in/yogaprabhu</span>
+            </a>
+        </div>
+
+        <!-- Divider -->
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6"></div>
+        
+        <!-- CTA -->
+        <p class="text-xs text-slate-500 mb-4 font-mono uppercase tracking-widest">Digital Portfolio</p>
+        
+        <a href="https://prabhuofyoga.github.io/yogaprabhu-portfolio/" class="flex items-center justify-center gap-2 w-full py-4 bg-white text-slate-900 rounded-xl font-bold shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] hover:-translate-y-1 transition-all">
+            Enter Portfolio <i class="fas fa-arrow-right text-sm"></i>
         </a>
     </div>
 
