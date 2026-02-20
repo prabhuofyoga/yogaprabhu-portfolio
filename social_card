@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogaprabhu | Print-Ready Social Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --cozy-bg: #FFFBF0;       /* Warm cream background */
+            --cozy-text: #451A03;     /* Dark coffee text */
+            --cozy-muted: #78350F;    /* Muted brown text */
+            --cozy-accent: #EA580C;   /* Orange accent */
+            --cozy-border: #FEF3C7;   /* Light warm border */
+            --cozy-dark: #2a1612;     /* Very dark brown for the back */
+        }
+
+        /* Presentation Wrapper (Just for viewing on screen) */
+        body {
+            background-color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .instruction-bar {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+
+        /* --- ACTUAL CARD SPECIFICATIONS --- */
+        /* Standard US Business Card: 3.5in x 2.0in */
+        
+        .card-container {
+            width: 3.5in;
+            height: 2in;
+            background: var(--cozy-bg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            display: flex;
+            box-sizing: border-box;
+            /* Print scaling fix */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* --- CARD FRONT --- */
+        .card-front {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0.2in;
+            background-image: radial-gradient(#E6DFD3 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+
+        .logo-container {
+            width: 0.55in;
+            height: 0.55in;
+            margin-bottom: 0.08in;
+            position: relative;
+            z-index: 10;
+        }
+
+        .name-front {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16pt;
+            font-weight: 800;
+            color: var(--cozy-text);
+            letter-spacing: -0.5px;
+            margin: 0 0 2px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .title-front {
+            font-size: 6.5pt;
+            color: var(--cozy-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .subtitle-front {
+            font-size: 5.5pt;
+            color: var(--cozy-muted);
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* --- CARD BACK --- */
+        .card-back {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.25in;
+            background: var(--cozy-dark);
+            color: #fffbeb;
+        }
+
+        /* Subtle glowing background effect on the back */
+        .card-back::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 0% 100%, rgba(234, 88, 12, 0.15) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .back-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 65%;
+            z-index: 10;
+        }
+
+        .back-right {
+            width: 30%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.08in;
+            font-size: 6.5pt;
+            color: #fed7aa; /* Light orange/cream */
+        }
+
+        .contact-icon {
+            color: var(--cozy-accent);
+            width: 0.15in;
+            font-size: 8pt;
+            margin-right: 0.05in;
+        }
+
+        .name-back {
+            font-family: 'Poppins', sans-serif;
+            font-size: 10pt;
+            font-weight: 800;
+            color: #fffbeb;
+            margin: 0 0 2px 0;
+        }
+
+        .title-back {
+            font-size: 6pt;
+            color: var(--cozy-accent);
+            margin-bottom: 0.15in;
+            font-weight: 600;
+        }
+
+        /* QR Code */
+        .qr-code {
+            width: 0.75in;
+            height: 0.75in;
+            background: white;
+            padding: 0.04in;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Print Specifics */
+        @media print {
+            body { background: white; padding: 0; }
+            .instruction-bar { display: none; }
+            .card-container {
+                box-shadow: none;
+                margin-bottom: 0.5in;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instruction-bar">
+        <h2 style="margin-top:0; color:#451A03; font-family: 'Poppins', sans-serif;">Your Physical Social Card Design</h2>
+        <p style="color:#78350F; font-size: 0.9rem; margin-bottom: 0;">
+            This layout is exactly <strong>3.5" x 2.0"</strong> (Standard US Size). <br>
+            It perfectly matches your "OOO Mode / Vibe Coder" aesthetic. Bring both this file and your business card file to the print shop!
+        </p>
+    </div>
+
+    <!-- FRONT OF CARD -->
+    <div>
+        <h3 style="color:#78350F; text-align:center; font-size: 0.8rem; text-transform:uppercase; letter-spacing: 2px;">Front Side</h3>
+        <div class="card-container card-front">
+            
+            <!-- CUSTOM COZY SVG LOGO (Steaming Ginger Tea) -->
+            <div class="logo-container">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background Circle -->
+                    <circle cx="50" cy="50" r="45" fill="#FEF3C7" />
+                    
+                    <!-- Mug Body -->
+                    <path d="M30 40 h35 a5 5 0 0 1 5 5 v15 a15 15 0 0 1 -15 15 h-10 a15 15 0 0 1 -15 -15 v-20 z" fill="#FFFBF0" stroke="#EA580C" stroke-width="4" stroke-linejoin="round"/>
+                    
+                    <!-- Mug Handle -->
+                    <path d="M70 45 h5 a10 10 0 0 1 10 10 v0 a10 10 0 0 1 -10 10 h-5" fill="none" stroke="#EA580C" stroke-width="4" stroke-linecap="round"/>
+                    
+                    <!-- Steam 1 -->
+                    <path d="M40 30 Q 35 25 40 20 T 40 10" fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                    
+                    <!-- Steam 2 -->
+                    <path d="M50 32 Q 45 25 50 18 T 50 6" fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+                    
+                    <!-- Steam 3 -->
+                    <path d="M60 28 Q 55 23 60 18 T 60 12" fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+                </svg>
+            </div>
+
+            <h1 class="name-front">Yogaprabhu S.</h1>
+            <div class="title-front">Accountant by day &bull; Vibe-coder by night</div>
+            <div class="subtitle-front">Fueled entirely by strong ginger tea.</div>
+        </div>
+    </div>
+
+    <!-- BACK OF CARD -->
+    <div>
+        <h3 style="color:#78350F; text-align:center; font-size: 0.8rem; text-transform:uppercase; letter-spacing: 2px;">Back Side</h3>
+        <div class="card-container card-back">
+            
+            <div class="back-left">
+                <h2 class="name-back">Let's connect.</h2>
+                <div class="title-back">OOO Mode Engaged</div>
+                
+                <div class="contact-item">
+                    <i class="fab fa-instagram contact-icon"></i>
+                    @prabhuofyoga
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp contact-icon"></i>
+                    +91 98843 66634
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-gamepad contact-icon"></i>
+                    Story Game Enthusiast
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe contact-icon"></i>
+                    prabhuofyoga.github.io/personal
+                </div>
+            </div>
+
+            <div class="back-right">
+                <!-- QR Code linking directly to the Personal page -->
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://prabhuofyoga.github.io/yogaprabhu-portfolio/social_card_digital.html" alt="QR Code to Social Page" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
