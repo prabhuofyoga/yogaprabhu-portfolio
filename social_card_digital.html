@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogaprabhu S. | Let's Connect</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Configuration matching your Personal Portfolio -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cozy: {
+                            bg: '#FFFBF0',       
+                            text: '#451A03',     
+                            muted: '#78350F',    
+                            accent: '#EA580C',   
+                            border: '#FEF3C7',   
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FFFBF0;
+            background-image: radial-gradient(#E6DFD3 1px, transparent 1px);
+            background-size: 24px 24px;
+            overflow: hidden; /* Prevents scrolling on the card page */
+        }
+        
+        /* Soft Card Panel */
+        .cozy-panel {
+            background: #FFFFFF;
+            border: 1px solid #FEF3C7;
+            box-shadow: 0 20px 40px -10px rgba(69, 26, 3, 0.08);
+        }
+        
+        /* Interactive Hover Effect */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            border-color: #FDBA74; /* orange-300 */
+            box-shadow: 0 10px 20px -5px rgba(234, 88, 12, 0.1);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="text-cozy-text h-screen flex items-center justify-center antialiased selection:bg-orange-200 selection:text-orange-900">
+
+    <!-- Background Ambient Blobs -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-orange-100/60 rounded-full mix-blend-multiply filter blur-[80px] animate-blob"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[350px] h-[350px] bg-amber-100/60 rounded-full mix-blend-multiply filter blur-[80px] animate-blob" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- The Card -->
+    <div class="cozy-panel relative z-10 w-[90%] max-w-[400px] rounded-[2rem] p-8 text-center">
+        
+        <!-- Avatar / SVG Logo -->
+        <div class="w-24 h-24 mx-auto rounded-full bg-orange-50 flex items-center justify-center shadow-inner mb-6 border-4 border-white relative">
+            <div class="absolute inset-0 rounded-full border border-orange-100"></div>
+            <!-- Steaming Tea SVG -->
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-14 h-14">
+                <path d="M30 40 h35 a5 5 0 0 1 5 5 v15 a15 15 0 0 1 -15 15 h-10 a15 15 0 0 1 -15 -15 v-20 z" fill="#FFFBF0" stroke="#EA580C" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M70 45 h5 a10 10 0 0 1 10 10 v0 a10 10 0 0 1 -10 10 h-5" fill="none" stroke="#EA580C" stroke-width="4" stroke-linecap="round"/>
+                <path d="M40 30 Q 35 25 40 20 T 40 10" fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                <path d="M50 32 Q 45 25 50 18 T 50 6" fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+                <path d="M60 28 Q 55 23 60 18 T 60 12" fill="none" stroke="#EA580C" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <!-- Headers -->
+        <h1 class="font-heading text-2xl font-extrabold text-cozy-text tracking-tight mb-1">Yogaprabhu S.</h1>
+        <div class="text-sm text-cozy-accent font-semibold mb-8">
+            OOO Mode Engaged <br>
+            <span class="text-cozy-muted font-normal italic">Powered by strong ginger tea.</span>
+        </div>
+        
+        <!-- Contact Items -->
+        <div class="space-y-3 mb-8 text-left">
+            
+            <!-- Instagram (External Hyperlink) -->
+            <a href="https://instagram.com/prabhuofyoga" target="_blank" class="hover-lift flex items-center gap-4 text-cozy-text p-3 rounded-xl bg-orange-50/50 border border-orange-100 group">
+                <div class="w-10 h-10 rounded-lg bg-pink-100 text-pink-600 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-all">
+                    <i class="fab fa-instagram text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-semibold">Instagram</span>
+                    <span class="text-xs text-cozy-muted">@prabhuofyoga</span>
+                </div>
+            </a>
+            
+            <!-- WhatsApp (External Hyperlink) -->
+            <a href="https://wa.me/+919884366634" target="_blank" class="hover-lift flex items-center gap-4 text-cozy-text p-3 rounded-xl bg-orange-50/50 border border-orange-100 group">
+                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center group-hover:bg-[#25D366] group-hover:text-white transition-all">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-semibold">WhatsApp</span>
+                    <span class="text-xs text-cozy-muted">+91 98843 66634</span>
+                </div>
+            </a>
+
+            <!-- Add to Contacts (vCard Download with Phone + Gmail) -->
+            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0D%0AVERSION%3A3.0%0D%0AFN%3AYogaprabhu%20S.%0D%0AN%3AS.%3BYogaprabhu%3B%3B%3B%0D%0ATITLE%3AVibe-coder%0D%0ATEL%3BTYPE%3DCELL%3A%2B919884366634%0D%0AEMAIL%3Aprabhuofyoga%40gmail.com%0D%0AURL%3Ahttps%3A%2F%2Fprabhuofyoga.github.io%2Fyogaprabhu-portfolio%2Fpersonal.html%0D%0AEND%3AVCARD" download="Yogaprabhu_Social.vcf" class="hover-lift flex items-center gap-4 text-cozy-text p-3 rounded-xl bg-orange-50/50 border border-orange-100 group">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-semibold">Save Contact</span>
+                    <span class="text-xs text-cozy-muted">Includes Email & Phone</span>
+                </div>
+            </a>
+            
+        </div>
+
+        <!-- Divider -->
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-orange-200 to-transparent mb-6"></div>
+        
+        <!-- CTA -->
+        <p class="text-xs text-cozy-muted mb-4 font-mono uppercase tracking-widest">Explore My Vibes</p>
+        
+        <a href="personal.html" class="flex items-center justify-center gap-2 w-full py-4 bg-cozy-text text-white rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-1 transition-all">
+            Enter OOO Mode <i class="fas fa-arrow-right text-sm text-orange-400"></i>
+        </a>
+    </div>
+
+</body>
+</html>
